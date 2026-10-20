@@ -1,0 +1,24 @@
+HydrantGUID,GISID,InspDate,EngineCo,Inspector,Location,Lat,Lon,FoundAtLoc,Operable,Corrosion,Gauge,Spindle,LowPressure,CapsMissing,ShutoffValve,Obstructed,MissSerial,MissSpindle,MissMainSize,MissShutoffDist,DmgThreads,StrippedSpindle,Leak,PaintedOver,DmgCap,HardToOperate,NeedsFollowup,Remarks
+,0046,2026-06-22 11:50,E01,Fine_B,SE MARKET ST & 4TH ST,37.78520,-122.40560,Yes,Limited,No,60,56,No,0,OK,Yes,No,No,No,No,No,No,No,No,No,No,Yes,DEMO. Blocked by bus shelter. Operable with vice grips.
+,0291,2025-09-20 11:05,E01,Fine_B,S/S GEARY ST 33' W KEARNY ST,37.78768,-122.40370,Yes,Yes,No,68,62,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,DEMO. Annual inspection. No issues.
+,0291,2026-10-10 10:20,E01,Ballard_M,S/S GEARY ST 33' W KEARNY ST,37.78768,-122.40370,Yes,Yes,No,70,62,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,DEMO. Annual inspection. No issues.
+,0358,2025-09-15 10:10,E01,Harrington_J,NE GRANT AVE & GEARY ST,37.78775,-122.40530,Yes,Yes,No,52,50,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,DEMO. Annual inspection. No issues.
+,0358,2026-09-30 13:40,E01,Harrington_J,NE GRANT AVE & GEARY ST,37.78775,-122.40530,Yes,Yes,No,38,50,Yes,0,OK,No,No,No,No,No,No,No,No,No,No,No,Yes,"DEMO. Read 38 psi on gauge, stamped 50. Water Dept. notified."
+,0383,2025-08-21 09:50,E01,Lopes_J,NW KEARNY ST & GEARY ST,37.78785,-122.40395,Yes,Yes,No,55,48,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,DEMO. Annual inspection. No issues. Due again.
+,0490,2026-02-22 12:30,E01,Marin_G,NW ELLIS ST & POWELL ST,37.78545,-122.40815,Yes,Yes,No,57,55,No,0,OK,No,No,No,No,No,No,No,Yes,No,No,No,Yes,DEMO. Leaking from bonnet. Water Dept. notified.
+,0490,2026-08-21 10:45,E01,Marin_G,NW ELLIS ST & POWELL ST,37.78545,-122.40815,Yes,Yes,No,58,55,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,DEMO. Re-inspected after repair. Leak fixed.
+,0563,2026-07-17 11:30,E01,Ramirez_C,SW EDDY ST & MASON ST,37.78400,-122.40975,Yes,Yes,No,54,50,No,0,Buried,No,No,No,Yes,No,No,No,No,No,No,No,Yes,DEMO. Shutoff valve paved over. Main size not labeled.
+,0570,2022-08-22 13:00,E01,Watrous_J,NW O'FARRELL ST & MASON ST,37.78625,-122.40995,Yes,Yes,No,50,50,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,DEMO. Annual inspection. No issues.
+,0570,2023-08-27 09:30,E01,Sansoni_V,NW O'FARRELL ST & MASON ST,37.78625,-122.40995,Yes,Yes,Yes,52,50,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,DEMO. Light corrosion on caps.
+,0570,2024-08-21 10:00,E01,Sansoni_V,NW O'FARRELL ST & MASON ST,37.78625,-122.40995,Yes,Yes,No,51,50,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,DEMO. Annual inspection. No issues. Two years overdue.
+,0718,2026-09-05 14:15,E01,Magalong_M,SE JONES ST & GEARY ST,37.78640,-122.41305,No,,,,,,,,,,,,,,,,,,,Yes,DEMO. No hydrant at indicated location. Checked all four corners of Jones and Geary.
+,3402,2026-10-19 15:20,E01,Ballard_M,SE NEW MONTGOMERY ST & MINNA ST,37.78660,-122.39965,Yes,No,No,66,65,No,0,OK,No,No,No,No,No,No,Yes,No,No,No,Yes,Yes,"DEMO. Spindle rounded off, could not open. Out of service."
+,3466,2026-09-08 13:15,E01,Other,NW 6TH ST & STEVENSON ST,37.78135,-122.40920,Yes,Yes,No,61,60,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,"DEMO. Inspector: Lee, K (new to E01, not on the list yet). No issues."
+,3467,2026-08-16 14:40,E01,Magalong_M,NW 6TH ST & JESSIE ST,37.78100,-122.40880,Yes,Yes,No,56,,,0,OK,No,Yes,Yes,No,No,No,No,No,Yes,No,No,Yes,DEMO. Painted over. Serial and spindle stamp not readable.
+,3511,2026-09-29 12:45,E01,Sansoni_V,NE 7TH ST & MINNA ST,37.77875,-122.41000,Yes,Yes,Yes,59,52,No,2,OK,No,No,No,No,No,Yes,No,No,No,Yes,No,Yes,"DEMO. Two caps missing, third cap cracked. Outlet threads damaged."
+,3606,2025-11-04 10:35,E01,Lopes_J,NE 4TH ST & STEVENSON ST,37.78490,-122.40500,Yes,Yes,No,63,60,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,DEMO. Annual inspection. No issues. Turns due in about two weeks.
+,3641,2026-05-23 12:10,E01,Watrous_J,NW MISSION ST & NEW MONTGOMERY ST,37.78725,-122.40060,Yes,Yes,No,,88,,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,"DEMO. No gauge on the rig today, pressure not measured."
+,3658,2025-09-25 11:20,E01,Ramirez_C,NE MISSION ST & 7TH ST,37.77935,-122.41080,Yes,Yes,No,41,52,Yes,0,OK,No,No,No,No,No,No,No,No,No,No,No,Yes,"DEMO. Low pressure, 41 psi on gauge. Water Dept. notified."
+,3658,2026-09-20 10:55,E01,Ramirez_C,NE MISSION ST & 7TH ST,37.77935,-122.41080,Yes,Yes,No,60,52,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,DEMO. Re-inspected. Pressure back to normal.
+,3803,2026-10-20 08:30,E01,Marin_G,NW HOWARD ST & 5TH ST,37.78065,-122.40345,Yes,Yes,No,57,50,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,DEMO. Annual inspection. No issues.
+,3808,2026-10-18 09:40,E01,Watrous_J,NW HOWARD ST & 7TH ST,37.77720,-122.40820,Yes,Yes,No,55,50,No,0,WaterInBox,No,No,No,No,No,No,No,Yes,No,No,No,Yes,DEMO. Slow leak at outlet. Water standing in valve box.

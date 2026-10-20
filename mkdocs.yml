@@ -69,6 +69,7 @@ nav:
       - Pilot task cards: reference/task-cards.md
       - Offline basemap: reference/offline-basemap.md
       - Esri 11.5 documentation: reference/esri-docs.md
+      - Troubleshooting: reference/troubleshooting.md
   - Downloads: downloads.md
 
 validation:

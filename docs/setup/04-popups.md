@@ -4,6 +4,10 @@
 
 Set these in **Map Viewer > select layer > Configure pop-ups**. Field Maps uses the web map's pop-ups as they are.
 
+See both pop-ups on a phone in the [pop-up mockups](https://claude.ai/artifact/4VeRmAyeFMtAFJMPuF19c1), numbered to match the tables below.
+
+> **Check in 11.5, on a phone:** that Field Maps shows the status banner's background color (fallback under [Expression A](#expression-a-status-banner-arcade-element)), and that the **Related records** element exists in 11.5's Map Viewer (fallback in element 6 below).
+
 ## Rules for both pop-ups
 
 - **Answer first.** The top of each pop-up says whether the hydrant needs attention, so a crew member gets it without scrolling.
@@ -170,9 +174,48 @@ if ($feature.LowPressure == "Yes") t += " · LOW";
 return t;
 ```
 
+## Load demo inspections
+
+To see every pop-up state before crews add real inspections, load [data/demo_inspections.csv](../kit/data/demo_inspections.csv): 23 made-up inspections on 17 of the 21 sample hydrants. The script links each one to its hydrant by GIS ID, so it works on the layer you already published.
+
+1. In ArcGIS Pro, sign in to the portal as the owner of the source layer.
+2. Copy the **source** layer's service URL (from step 1, ending in `/FeatureServer`). Not a view: crews can't add records there as you, and the public view can't be read.
+3. Open **Python Command Prompt** and run:
+
+    ```
+    propy "C:\temp\hydrant-mvp\load_demo_inspections.py" --service <source service URL>
+    ```
+
+    If it says it can't open the table, Pro isn't passing your sign-in to the command prompt. Run it from the **Python window** inside Pro instead:
+
+    ```python
+    import sys, runpy; sys.argv = [r"C:\temp\hydrant-mvp\load_demo_inspections.py", "--service", r"<source service URL>"]; runpy.run_path(sys.argv[0], run_name="__main__")
+    ```
+
+    It prints `Loaded 23 demo inspections`. To load into the geodatabase before publishing instead, use `--gdb C:\temp\HydrantInspections.gdb`.
+
+4. Open the web map. The hydrants now show these states:
+
+| State | Hydrants | What it shows |
+|---|---|---|
+| Not inspected yet (gray) | 0353, 0564, 3401, 3469 | No inspections on record |
+| OK (green) | 0291, 3803, 3466, 3641, 3606 | 0291 has two clean years. 3803 was inspected today. 3466 used inspector "Other" with the name in Remarks. 3641 has no gauge reading ("Not measured"). 3606 is 350 days old, so it turns yellow about two weeks after you load it |
+| OK after a repair (green) | 0490, 3658 | Latest inspection is clean; an older one needed follow-up (leak, low pressure) |
+| Inspection due (yellow) | 0383, 0570 | Last inspected over a year ago. 0570 has three inspections, the newest two years old |
+| Needs SFPUC follow-up (red) | 0358, 3402, 0046, 0563, 3467, 3511, 3808 | 0358 low pressure (38 psi measured, 50 stamped). 3402 inoperable, stripped spindle. 0046 limited, obstructed. 0563 shutoff valve buried. 3467 painted over, serial and spindle stamp missing. 3511 two caps missing, damaged threads. 3808 leak, water in valve box |
+| Not found at location (red) | 0718 | Hydrant not found; the rest of the inspection is blank |
+
+The dates in the CSV are moved forward to the day you load it, so the states above hold whenever you run it. The demo records have no photos; add one by hand to test attachments.
+
+**Before the pilot,** remove them. Every demo record's Remarks starts with `DEMO.`, and this deletes only those:
+
+```
+propy "C:\temp\hydrant-mvp\load_demo_inspections.py" --service <source service URL> --remove
+```
+
 ## Check on a phone
 
-- [ ] Hydrant banner color matches the latest inspection for one hydrant in each state (add test inspections to get red, green and gray; edit a date in the source to get yellow).
+- [ ] Hydrant banner color matches the table above for one hydrant in each state (gray 0353, green 0291, yellow 0383, red 0358, not found 0718).
 - [ ] Banner and title read without zooming, one-handed.
 - [ ] Related inspections list shows newest first, each titled with date and company.
 - [ ] Inspection with no problems shows "None" under Issues found.

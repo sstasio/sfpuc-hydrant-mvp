@@ -70,6 +70,8 @@ return "arcgis-survey123://?" + UrlEncode(params);
 
 The link points at the survey, not a layer, so it works with either view.
 
+**Why a Text element and not an Arcade element?** The Arcade only builds the web address; it lives under **Attribute expressions**, and `{expression/s123}` is the placeholder that drops that address into the link. An Arcade element could return an HTML `<a href>` link instead, but the Text element is simpler and easier to restyle.
+
 ## Next
 
 [7. Test before the pilot](07-test.md)

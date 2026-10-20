@@ -9,6 +9,7 @@ Links for ArcGIS Enterprise 11.5. They use Esri's standard 11.5 paths and couldn
 | 2 | View settings | [Edit a hosted feature layer view definition](https://enterprise.arcgis.com/en/portal/11.5/use/set-view-definition.htm) |
 | 2 | Editing settings | [Manage hosted feature layer editing](https://enterprise.arcgis.com/en/portal/11.5/use/manage-editing-hfl.htm) |
 | 2 | Who can see and edit what | [Data access and editing](https://enterprise.arcgis.com/en/portal/11.5/use/data-access-and-editing.htm) |
+| 2, 5 | True curves warning in Field Maps | [BUG-000173715](https://support.esri.com/en-us/bug/arcgis-field-maps-designer-returns-the-error-features-w-bug-000173715) and its workaround. Our steps are in [Troubleshooting](troubleshooting.md) |
 | 3, 5 | Offline maps and which basemaps can go offline | [Take maps offline](https://enterprise.arcgis.com/en/portal/11.5/use/take-maps-offline.htm) |
 | 3, 5 | Offline basemap and tile packages in Field Maps | [Prepare maps for download](https://doc.arcgis.com/en/field-maps/latest/prepare-maps/prepare-maps-for-download.htm) |
 | 3 | Known limit: "for Export" basemap added in Map Viewer | [BUG-000138987](https://support.esri.com/en-us/bug/taking-a-web-map-offline-is-failing-in-arcgis-enterpris-bug-000138987) |
