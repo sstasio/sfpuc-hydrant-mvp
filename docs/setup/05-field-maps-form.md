@@ -70,7 +70,7 @@ $feature.FoundAtLoc == "Yes"
 
 ## 5d. Offline
 
-**Field Maps Designer > Offline**: add a map area around the sample hydrants.
+**Field Maps Designer > Offline**: add a map area around the sample hydrants. The map needs an offline-ready basemap first; see [Offline basemap](../reference/offline-basemap.md) for the basemap and the [map area steps](../reference/offline-basemap.md#setting-up-the-offline-area-step-5d).
 
 > **Check in 11.5:** that 11.5 offline areas include the related table and attachments.
 

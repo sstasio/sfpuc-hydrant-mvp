@@ -8,6 +8,12 @@ Both apps write to the same inspections table, so every inspection lands in one 
 - **Scope:** low-pressure hydrants only for now (no AWSS hydrants or cisterns yet)
 - **Status:** hydrants and inspections are published to the portal. Next up: views and the web map (step 2).
 
+## Latest changes
+
+**2026-10-20**
+
+- **Offline basemap.** The Enterprise gallery basemaps can't go offline. Use an Esri "for Export" basemap added to the portal with stored ArcGIS Online credentials (pilot), or your own vector tile package (citywide). See [Offline basemap](reference/offline-basemap.md).
+
 > **About "Check in 11.5" notes.** This guide was written without access to the portal. Where you see **Check in 11.5**, the feature or label couldn't be confirmed for 11.5, so look for it in your UI before relying on it.
 
 ## Setup, in order
@@ -44,6 +50,7 @@ flowchart LR
 - [Schema and field reasons](reference/schema.md): every field, its type, and the SFFD report lines it replaces
 - [Field Maps vs Survey123](reference/app-comparison.md): how the two forms differ, for the comparison
 - [Pilot task cards](reference/task-cards.md): printable Set A and Set B cards
+- [Offline basemap](reference/offline-basemap.md): a basemap Field Maps can take offline, and the offline area steps
 - [Esri 11.5 documentation](reference/esri-docs.md): links for each step
 - [Downloads](downloads.md): scripts, data, the XLSForm and the pilot scorecard
 

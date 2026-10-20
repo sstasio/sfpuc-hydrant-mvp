@@ -15,7 +15,7 @@ Step-by-step setup and reference for the SFPUC hydrant inspection MVP: one hoste
 7. [Test before the pilot](docs/setup/07-test.md)
 8. [Run the staff pilot](docs/setup/08-pilot.md)
 
-Reference: [schema](docs/reference/schema.md) · [Field Maps vs Survey123](docs/reference/app-comparison.md) · [pilot task cards](docs/reference/task-cards.md) · [Esri 11.5 docs](docs/reference/esri-docs.md) · [downloads](docs/downloads.md)
+Reference: [schema](docs/reference/schema.md) · [Field Maps vs Survey123](docs/reference/app-comparison.md) · [pilot task cards](docs/reference/task-cards.md) · [offline basemap](docs/reference/offline-basemap.md) · [Esri 11.5 docs](docs/reference/esri-docs.md) · [downloads](docs/downloads.md)
 
 ## Reading it
 

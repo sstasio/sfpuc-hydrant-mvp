@@ -67,6 +67,7 @@ nav:
       - Schema and field reasons: reference/schema.md
       - Field Maps vs Survey123: reference/app-comparison.md
       - Pilot task cards: reference/task-cards.md
+      - Offline basemap: reference/offline-basemap.md
       - Esri 11.5 documentation: reference/esri-docs.md
   - Downloads: downloads.md
 
