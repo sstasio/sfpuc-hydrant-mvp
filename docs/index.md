@@ -12,6 +12,9 @@ Both apps write to the same inspections table, so every inspection lands in one 
 
 **2026-10-20**
 
+- **Offline basemap.** The Enterprise gallery basemaps can't go offline. Use an Esri "for Export" basemap added to the portal with stored ArcGIS Online credentials (pilot), or your own vector tile package (citywide). See [Offline basemap](reference/offline-basemap.md).
+- **Demo inspections** to show every pop-up state (never inspected, OK, due, follow-up, not found, low pressure). See [Load demo inspections](setup/04-popups.md#load-demo-inspections).
+- **"Features with true curves cannot currently be edited"** in Field Maps is a service setting, not the data. [Fix it here](reference/troubleshooting.md#features-with-true-curves-cannot-currently-be-edited).
 - **Crews edit through views, not the published layer.** The source is owner-only; a field view feeds Field Maps; an optional public view takes Survey123 submissions. See [step 2](setup/02-views.md).
 - **Keep every field in both views.** Privacy comes from the view settings, not from hiding fields. See [fields in each view](setup/02-views.md#fields-in-each-view).
 - **Public view: Add greyed out?** Turn on Add in the source item's Settings first. **Public data collection** goes on for the public view only, with a five-point safety checklist. See [step 2c](setup/02-views.md#2c-create-the-public-view-optional).
@@ -21,10 +24,6 @@ Both apps write to the same inspections table, so every inspection lands in one 
 - **All the separate files are now this one guide.** See [where the old files went](#where-the-old-files-went).
 
 > **About "Check in 11.5" notes.** This guide was written without access to the portal. Where you see **Check in 11.5**, the feature or label couldn't be confirmed for 11.5, so look for it in your UI before relying on it.
-
-## Latest changes
-
-- **2026-10-20:** Field Maps says "Features with true curves cannot currently be edited"? It's a service setting, not the data. [Fix it here](reference/troubleshooting.md#features-with-true-curves-cannot-currently-be-edited).
 
 ## Setup, in order
 
@@ -40,10 +39,6 @@ Work through these top to bottom. Each step says who usually does it and what yo
 | [6. Publish the Survey123 form](setup/06-survey123.md) | Open the XLSForm in Connect, brand it, publish, add the pop-up link | GIS analyst, portal admin | A test inspection saves from Survey123 |
 | [7. Test before the pilot](setup/07-test.md) | Crew-account test, public test, phone tap-test | GIS analyst | Every box on the test checklist is ticked |
 | [8. Run the staff pilot](setup/08-pilot.md) | Prep, sessions with SFFD testers, scoring, decision | Pilot team | One app chosen |
-
-## Latest changes
-
-- **2026-10-20:** Demo inspections to show every pop-up state (never inspected, OK, due, follow-up, not found, low pressure). See [Load demo inspections](setup/04-popups.md#load-demo-inspections).
 
 ## How the pieces fit
 
@@ -64,6 +59,7 @@ flowchart LR
 - [Schema and field reasons](reference/schema.md): every field, its type, and the SFFD report lines it replaces
 - [Field Maps vs Survey123](reference/app-comparison.md): how the two forms differ, for the comparison
 - [Pilot task cards](reference/task-cards.md): printable Set A and Set B cards
+- [Offline basemap](reference/offline-basemap.md): a basemap Field Maps can take offline, and the offline area steps
 - [Esri 11.5 documentation](reference/esri-docs.md): links for each step
 - [Troubleshooting](reference/troubleshooting.md): fixes for problems found on the portal, starting with the Field Maps true curves warning
 - [Downloads](downloads.md): scripts, data, the XLSForm and the pilot scorecard

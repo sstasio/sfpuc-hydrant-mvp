@@ -15,11 +15,12 @@ Step-by-step setup and reference for the SFPUC hydrant inspection MVP: one hoste
 7. [Test before the pilot](docs/setup/07-test.md)
 8. [Run the staff pilot](docs/setup/08-pilot.md)
 
-Reference: [schema](docs/reference/schema.md) · [Field Maps vs Survey123](docs/reference/app-comparison.md) · [pilot task cards](docs/reference/task-cards.md) · [Esri 11.5 docs](docs/reference/esri-docs.md) · [troubleshooting](docs/reference/troubleshooting.md) · [downloads](docs/downloads.md)
+Reference: [schema](docs/reference/schema.md) · [Field Maps vs Survey123](docs/reference/app-comparison.md) · [pilot task cards](docs/reference/task-cards.md) · [offline basemap](docs/reference/offline-basemap.md) · [Esri 11.5 docs](docs/reference/esri-docs.md) · [troubleshooting](docs/reference/troubleshooting.md) · [downloads](docs/downloads.md)
 
 ## Latest changes
 
 - **2026-10-20:** Fix for Field Maps' "Features with true curves cannot currently be edited" warning: [Troubleshooting](docs/reference/troubleshooting.md#features-with-true-curves-cannot-currently-be-edited), plus a publishing tip in [step 1](docs/setup/01-build-data.md).
+- **2026-10-20:** Offline basemap for Field Maps: [Offline basemap](docs/reference/offline-basemap.md).
 
 ## Reading it
 
