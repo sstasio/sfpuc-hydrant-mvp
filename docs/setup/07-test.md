@@ -24,12 +24,13 @@ Use a private browser window.
 
 ## Pop-ups on a phone
 
-- [ ] Hydrant banner color matches the latest inspection for one hydrant in each state. Add test inspections to get red, green and gray; edit a date in the source to get yellow.
+- [ ] Hydrant banner color matches the latest inspection for one hydrant in each state. Use the [demo inspections](04-popups.md#load-demo-inspections): gray 0353, green 0291, yellow 0383, red 0358, not found 0718.
 - [ ] Banner and title read without zooming, one-handed.
 - [ ] Related inspections list shows newest first, each titled with date and company.
 - [ ] An inspection with no problems shows "None" under Issues found.
 - [ ] Photos open from the inspection pop-up.
 - [ ] All of the above also work with the map taken offline.
+- [ ] Demo inspections are removed (`--remove`) before the pilot starts.
 
 ## Tap-test
 

@@ -25,6 +25,10 @@ Work through these top to bottom. Each step says who usually does it and what yo
 | [7. Test before the pilot](setup/07-test.md) | Crew-account test, public test, phone tap-test | GIS analyst | Every box on the test checklist is ticked |
 | [8. Run the staff pilot](setup/08-pilot.md) | Prep, sessions with SFFD testers, scoring, decision | Pilot team | One app chosen |
 
+## Latest changes
+
+- **2026-10-20:** Demo inspections to show every pop-up state (never inspected, OK, due, follow-up, not found, low pressure). See [Load demo inspections](setup/04-popups.md#load-demo-inspections).
+
 ## How the pieces fit
 
 ```mermaid
