@@ -6,7 +6,19 @@ Both apps write to the same inspections table, so every inspection lands in one 
 
 - **Target:** ArcGIS Enterprise 11.5, [gis.sfpuc.org/portal](https://gis.sfpuc.org/portal)
 - **Scope:** low-pressure hydrants only for now (no AWSS hydrants or cisterns yet)
-- **Status:** hydrants and inspections are published to the portal. Next up: views and the web map (step 2).
+- **Status:** hydrants and inspections are published (step 1). Views are being set up (step 2), then the web map and pop-ups (steps 3 and 4).
+
+## Latest changes
+
+**2026-10-20**
+
+- **Crews edit through views, not the published layer.** The source is owner-only; a field view feeds Field Maps; an optional public view takes Survey123 submissions. See [step 2](setup/02-views.md).
+- **Keep every field in both views.** Privacy comes from the view settings, not from hiding fields. See [fields in each view](setup/02-views.md#fields-in-each-view).
+- **Public view: Add greyed out?** Turn on Add in the source item's Settings first. **Public data collection** goes on for the public view only, with a five-point safety checklist. See [step 2c](setup/02-views.md#2c-create-the-public-view-optional).
+- **New pop-up spec** with status banners, short labels, an "Issues found" list and [phone mockups](https://claude.ai/artifact/4VeRmAyeFMtAFJMPuF19c1). See [step 4](setup/04-popups.md).
+- **The Survey123 link** is an attribute expression named `s123` plus a Text element whose link is `{expression/s123}`. See [step 6d](setup/06-survey123.md#6d-add-the-inspect-in-survey123-link).
+- **Running the build script:** in a Pro notebook use `%run`; in the Python window use the `runpy` line; `propy` only works in the Python Command Prompt. See [step 1](setup/01-build-data.md).
+- **All the separate files are now this one guide.** See [where the old files went](#where-the-old-files-went).
 
 > **About "Check in 11.5" notes.** This guide was written without access to the portal. Where you see **Check in 11.5**, the feature or label couldn't be confirmed for 11.5, so look for it in your UI before relying on it.
 
@@ -55,5 +67,21 @@ flowchart LR
 - [Esri 11.5 documentation](reference/esri-docs.md): links for each step
 - [Troubleshooting](reference/troubleshooting.md): fixes for problems found on the portal, starting with the Field Maps true curves warning
 - [Downloads](downloads.md): scripts, data, the XLSForm and the pilot scorecard
+
+## Where the old files went
+
+| Old file | Now in |
+|---|---|
+| `BUILD-GUIDE.md` | Steps [1](setup/01-build-data.md), [5](setup/05-field-maps-form.md), [6](setup/06-survey123.md) and [7](setup/07-test.md) |
+| `VIEWS-AND-WEBMAP.md` | Steps [2](setup/02-views.md), [3](setup/03-web-map.md), [6a](setup/06-survey123.md#6a-pick-which-view-the-survey-writes-to) and [7](setup/07-test.md) |
+| `FIELD-MAPS-POPUPS.md` | Step [4](setup/04-popups.md) |
+| `field-maps-arcade.md` | Form expressions in step [5](setup/05-field-maps-form.md#5b-calculated-fields); Survey123 link in step [6d](setup/06-survey123.md#6d-add-the-inspect-in-survey123-link) |
+| `pilot/PILOT-SCRIPT.md` | Step [8](setup/08-pilot.md) and the [task cards](reference/task-cards.md) |
+| `hydrant-inspection-schema-draft.md` | [Schema and field reasons](reference/schema.md) |
+| `DOWNLOADS.md` | [Downloads](downloads.md) |
+
+## Making changes
+
+This repo is now the one place to edit the guide. Change a page under `docs/`, add a line to **Latest changes** above, and merge. Claude can do this through a pull request when you ask in the project.
 
 > **Internal use.** This site holds the portal address, service names, SFFD inspector names and SFPUC logos. Keep the repo private and share it by adding people as collaborators.

@@ -31,6 +31,6 @@ Reference: [schema](docs/reference/schema.md) · [Field Maps vs Survey123](docs/
 
 This repo holds the portal address, service and view names, SFFD inspector names and SFPUC logos. Keep it private and share it by adding collaborators. Brand source: `sstasio/sfpuc-design-system`.
 
-## Updating
+## Making changes
 
-Edit the Markdown under `docs/`. The files crews and analysts load into ArcGIS are under `docs/kit/`; if you change one, rebuild `docs/kit/hydrant-mvp.zip` so the download matches.
+This repo is the one place to edit the guide. Edit the Markdown under `docs/` and add a line to **Latest changes** on the front page (`docs/index.md`). The files crews and analysts load into ArcGIS are under `docs/kit/`; if you change one, rebuild `docs/kit/hydrant-mvp.zip` so the download matches.

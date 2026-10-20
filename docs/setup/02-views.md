@@ -21,7 +21,7 @@ What this gets you:
 
 ## Fields in each view
 
-Keep **all fields** in both views.
+Keep **all fields** in both views. Don't hide any in **Update View**.
 
 - **Field view:** the Field Maps form and its Arcade read hydrant fields and fill several inspection fields automatically, so every field must be there. Hydrants are read-only through the ownership rule, not by hiding fields.
 - **Public view:** the survey writes nearly every inspection field. A missing field makes submissions fail or lose that value. Privacy comes from "Editors can't see any features", not from hiding fields.
@@ -66,10 +66,21 @@ Only if the portal admin allows public sharing (see [pilot prep](08-pilot.md#bef
     > **Check in 11.5:** that the table keeps its layer ID (1) in the view, since the form looks it up by name (`form_id` = `HydrantInspections`).
 
 3. **Settings**:
-    - **Enable editing**: on, **Add** only. If Add is greyed out, check that Add is on in the **source** layer's settings, because a view can't allow more than its source.
+    - **Enable editing**: on, **Add** only. If Add is greyed out (only Update offered), it's almost always one of two things:
+        1. Add is off on the **source**. A view can't allow more than its source, so open the source item's **Settings**, tick **Add** under editing, save, then come back to the view.
+        2. You're in the **Update View** dialog, which only changes layers and fields. Editing lives in the view's **Settings > Feature Layer (hosted, view) > Editing**.
     - **What features can editors see**: **Editors can't see any features**. The 11.5 wording may add "even those they add".
+    - **Public data collection**: **on**, for this view only. It's what lets people without a sign-in submit the survey. Keep it **off** on the source and the field view.
     - **Enable Sync**: off. **Allow others to export**: off.
 4. **Share** with **Everyone**. The source and field view stay private.
+
+Because anyone can write to this view, check it once it's set up:
+
+- [ ] Editing is **Add** only: no update, no delete.
+- [ ] **Editors can't see any features** is selected.
+- [ ] **Allow others to export** is off.
+- [ ] **Public data collection** is on here, and off on the source and field view.
+- [ ] Only this view is shared with **Everyone**. The source and field view are not.
 
 ## Next
 
