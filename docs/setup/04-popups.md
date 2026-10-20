@@ -4,6 +4,10 @@
 
 Set these in **Map Viewer > select layer > Configure pop-ups**. Field Maps uses the web map's pop-ups as they are.
 
+See both pop-ups on a phone in the [pop-up mockups](https://claude.ai/artifact/4VeRmAyeFMtAFJMPuF19c1), numbered to match the tables below.
+
+> **Check in 11.5, on a phone:** that Field Maps shows the status banner's background color (fallback under [Expression A](#expression-a-status-banner-arcade-element)), and that the **Related records** element exists in 11.5's Map Viewer (fallback in element 6 below).
+
 ## Rules for both pop-ups
 
 - **Answer first.** The top of each pop-up says whether the hydrant needs attention, so a crew member gets it without scrolling.
