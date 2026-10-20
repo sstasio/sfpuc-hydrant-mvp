@@ -56,10 +56,11 @@ Turn off every other field (GISID and Location are already in the title and text
 
 ```arcade
 // Status banner for the hydrant pop-up. Reads the latest related inspection.
-// Relationship name: in the Arcade editor, open Profile variables > $feature and
-// check the related records entry. Paste that name here if it differs.
-var rel = "Hydrants_HydrantInspections";
-var insp = FeatureSetByRelationshipName($feature, rel, ["*"], false);
+// Finds this hydrant's inspections by GlobalID. The name in quotes is the
+// inspections table's name in the map's Layers list; change it if yours differs.
+var gid = $feature.globalid;
+var insp = Filter(FeatureSetByName($map, "Hydrant Inspections Field - HydrantInspections", ["*"], false),
+                  "hydrantguid = @gid");
 var n = Count(insp);
 var last = First(OrderBy(insp, "inspdate DESC"));
 

@@ -65,7 +65,7 @@ Field Maps shows **Unable to Load All Data** and a **View Errors** row where an 
 | Message mentions | Cause | Fix |
 |---|---|---|
 | A field name, "field not found", or an invalid SQL / order-by | Field names were lower-cased when you published (`InspDate` became `inspdate`). Field lists and sort strings in quotes must match exactly | Use the lower-case Arcade in [step 4](../setup/04-popups.md) and [step 5](../setup/05-field-maps-form.md) |
-| The relationship, or "invalid relationship name" | The relationship has a different name on the service | In the Arcade editor open **Profile variables > $feature**, find the related records entry, and paste its name into `var rel = ...` |
+| "Invalid parameter", or the relationship | `FeatureSetByRelationshipName` can't find the relationship. The table's name in the map (e.g. "Hydrant Inspections Field - HydrantInspections") is not the relationship name | Use the `Filter(FeatureSetByName(...), "hydrantguid = @gid")` lookup now in [step 4](../setup/04-popups.md). For the real relationship name, open the view's `.../FeatureServer/0?f=pjson` and read `relationships > name` |
 | A table or layer not found | The inspections table isn't in the web map, or editing/query is off for it in the view | Add the field view's HydrantInspections table to the map (step 3) |
 
 ### 3. Check it worked

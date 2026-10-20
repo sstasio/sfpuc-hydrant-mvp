@@ -24,19 +24,21 @@ Build these groups. They mirror the Survey123 form so the pilot compares like wi
 
 Add each as a calculated expression on its field.
 
-Field names are lower-case on the portal (`gisid`, not `GISID`), so the field lists below use lower case. If the relationship name differs on your service, copy it from **Profile variables > $feature** in the Arcade editor.
+Field names are lower-case on the portal (`gisid`, not `GISID`), so the field lists below use lower case. They look up the hydrant by `hydrantguid` rather than by relationship name, because the relationship name on the published service didn't match (the pop-up banner failed with "Invalid parameter"). `"Hydrants"` is the layer's name in the service; **check** it in the Arcade editor's Profile variables if the expression fails.
 
 **GIS ID** (for **Location**, swap `h.gisid` for `h.location`):
 
 ```arcade
-var h = First(FeatureSetByRelationshipName($feature, "Hydrants_HydrantInspections", ["gisid", "location"], false));
+var hg = $feature.hydrantguid;
+var h = First(Filter(FeatureSetByName($datastore, "Hydrants", ["gisid", "location"], false), "globalid = @hg"));
 return IIf(IsEmpty(h), null, h.gisid);
 ```
 
 **Latitude** (for **Longitude**, use `.x` instead of `.y`). The sample data is stored in WGS84, so y is latitude.
 
 ```arcade
-var h = First(FeatureSetByRelationshipName($feature, "Hydrants_HydrantInspections", ["globalid"], true));
+var hg = $feature.hydrantguid;
+var h = First(Filter(FeatureSetByName($datastore, "Hydrants", ["globalid"], true), "globalid = @hg"));
 return IIf(IsEmpty(h), null, Round(Geometry(h).y, 6));
 ```
 
