@@ -19,6 +19,7 @@ Reference: [schema](docs/reference/schema.md) · [Field Maps vs Survey123](docs/
 
 ## Latest changes
 
+- **2026-10-20:** Phone test checklist using the demo inspections: [Test before the pilot](docs/setup/07-test.md#pop-ups-and-form-on-a-phone-with-the-demo-data).
 - **2026-10-20:** Pop-up and form Arcade now use the portal's lower-case field names, fixing "Some expressions failed to evaluate" in Field Maps: [Troubleshooting](docs/reference/troubleshooting.md#pop-up-says-some-expressions-failed-to-evaluate).
 - **2026-10-20:** Fix for Field Maps' "Features with true curves cannot currently be edited" warning: [Troubleshooting](docs/reference/troubleshooting.md#features-with-true-curves-cannot-currently-be-edited), plus a publishing tip in [step 1](docs/setup/01-build-data.md).
 - **2026-10-20:** Offline basemap for Field Maps: [Offline basemap](docs/reference/offline-basemap.md).
