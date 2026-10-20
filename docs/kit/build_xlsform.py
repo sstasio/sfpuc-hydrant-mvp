@@ -6,6 +6,7 @@ Needs openpyxl only (no arcpy). Field names and choice codes come from the same
 definitions the geodatabase script uses, so the form matches the published table.
 """
 import os
+import re
 
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill
@@ -38,7 +39,7 @@ def survey_rows():
         f" or ${{Obstructed}} = 'Yes' or {' or '.join(flags)}, 'Yes', 'No')"
     )
     rows = [
-        # Prefilled from the Field Maps pop-up link (field:HydrantGUID={GlobalID} etc.)
+        # Prefilled from the Field Maps pop-up link (field:hydrantguid={GlobalID} etc.)
         q("hidden", "HydrantGUID", **{"bind::esri:fieldType": "esriFieldTypeGUID"}),
         q("begin group", "hydrant", "Hydrant", appearance="field-list"),
         q("text", "GISID", "GIS ID", required="yes", readonly="yes",
@@ -52,7 +53,7 @@ def survey_rows():
         q("dateTime", "InspDate", "Inspection Date", required="yes", default="now()"),
         q("select_one EngineCompany", "EngineCo", "Engine Company", required="yes", appearance="autocomplete"),
         q("select_one Inspector", "Inspector", "Inspector", required="yes", appearance="autocomplete",
-          choice_filter="EngineCo=${EngineCo} or name='Other'",
+          choice_filter="engineco=${EngineCo} or name='Other'",
           hint="Names for the selected engine company. Pick Other and add your name in Remarks if missing."),
         q("end group", "crew"),
 
@@ -92,6 +93,20 @@ def survey_rows():
     return rows
 
 
+def portal_names(rows):
+    """Lower-case question names and ${} references.
+
+    The portal lower-cases every field name when the layer is published, and
+    Survey123 matches questions to fields by name.
+    """
+    for r in rows:
+        r["name"] = r["name"].lower()
+        for k in ("relevant", "calculation", "choice_filter", "required"):
+            if k in r:
+                r[k] = re.sub(r"\$\{(\w+)\}", lambda m: "${%s}" % m.group(1).lower(), r[k])
+    return rows
+
+
 def choice_rows():
     domains = schema.coded_domains()
     rows = []
@@ -101,7 +116,7 @@ def choice_rows():
     # (allowed by allow_choice_duplicates in settings).
     for c, n in sorted(schema.load_inspectors(), key=lambda r: (r[1], r[0])):
         rows.append({"list_name": "Inspector", "name": schema.inspector_code(n),
-                     "label": n.replace(",", ", "), "EngineCo": c})
+                     "label": n.replace(",", ", "), "engineco": c})
     rows.append({"list_name": "Inspector", "name": "Other", "label": "Other (type in Remarks)"})
     rows += [{"list_name": "markings", "name": n, "label": l} for n, l in schema.MARKING_FLAGS]
     rows += [{"list_name": "issues", "name": n, "label": l} for n, l in schema.ISSUE_FLAGS]
@@ -122,14 +137,14 @@ def write_sheet(ws, cols, rows):
 
 def main():
     wb = Workbook()
-    write_sheet(wb.active, SURVEY_COLS, survey_rows())
+    write_sheet(wb.active, SURVEY_COLS, portal_names(survey_rows()))
     wb.active.title = "survey"
-    write_sheet(wb.create_sheet("choices"), ["list_name", "name", "label", "EngineCo"], choice_rows())
+    write_sheet(wb.create_sheet("choices"), ["list_name", "name", "label", "engineco"], choice_rows())
     write_sheet(wb.create_sheet("settings"),
                 ["form_title", "form_id", "instance_name", "submission_url", "version",
                  "allow_choice_duplicates"],
                 [{"form_title": "Hydrant Inspection", "form_id": schema.INSPECTIONS,
-                  "instance_name": "concat(${GISID}, ' ', format-date(${InspDate}, '%Y-%m-%d'))",
+                  "instance_name": "concat(${gisid}, ' ', format-date(${inspdate}, '%Y-%m-%d'))",
                   "submission_url": "", "version": "1.0",
                   "allow_choice_duplicates": "yes"}])
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
