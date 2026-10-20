@@ -57,6 +57,14 @@ This lets crews open Survey123 from a hydrant in Field Maps with the hydrant alr
 3. Add a **Text** element (element 5 in [the hydrant pop-up](04-popups.md#hydrant-pop-up)). Type `Inspect in Survey123`, select it, click the link button, and enter `{expression/s123}` as the URL.
 
 ```arcade
+var g = Geometry($feature);
+var lon = g.x; var lat = g.y;
+if (Includes([3857, 102100], g.spatialReference.wkid)) {
+  // Web Mercator meters to degrees
+  var R = 6378137;
+  lon = g.x / R * 180 / PI;
+  lat = (2 * Atan(Exp(g.y / R)) - PI / 2) * 180 / PI;
+}
 var params = {
   "itemID": "SURVEY_ITEM_ID",
   "portalUrl": "https://gis.sfpuc.org/portal",
@@ -64,8 +72,8 @@ var params = {
   "field:gisid": $feature.gisid,
   "field:location": $feature.location,
   "field:spindle": $feature.spindlepsi,
-  "field:lat": Round(Geometry($feature).y, 6),
-  "field:lon": Round(Geometry($feature).x, 6)
+  "field:lat": Round(lat, 6),
+  "field:lon": Round(lon, 6)
 };
 // Opens the Survey123 field app. For a browser instead, use
 // "https://survey123.arcgis.com/share/SURVEY_ITEM_ID?" + UrlEncode(params)

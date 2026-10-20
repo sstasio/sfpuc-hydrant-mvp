@@ -34,12 +34,21 @@ var h = First(Filter(FeatureSetByName($datastore, "Hydrants", ["gisid", "locatio
 return IIf(IsEmpty(h), null, h.gisid);
 ```
 
-**Latitude** (for **Longitude**, use `.x` instead of `.y`). The sample data is stored in WGS84, so y is latitude.
+**Latitude** (for **Longitude**, return `lon` instead of `lat`). The data is stored in WGS84, but Field Maps can hand the geometry over in the map's Web Mercator meters, so the expression converts when it needs to.
 
 ```arcade
 var hg = $feature.hydrantguid;
 var h = First(Filter(FeatureSetByName($datastore, "Hydrants", ["globalid"], true), "globalid = @hg"));
-return IIf(IsEmpty(h), null, Round(Geometry(h).y, 6));
+if (IsEmpty(h)) return null;
+var g = Geometry(h);
+var lon = g.x; var lat = g.y;
+if (Includes([3857, 102100], g.spatialReference.wkid)) {
+  // Web Mercator meters to degrees
+  var R = 6378137;
+  lon = g.x / R * 180 / PI;
+  lat = (2 * Atan(Exp(g.y / R)) - PI / 2) * 180 / PI;
+}
+return Round(lat, 6);
 ```
 
 **Low Pressure:** Yes when the measured gauge pressure is below the stamped spindle pressure.
