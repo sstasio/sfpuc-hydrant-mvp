@@ -14,7 +14,7 @@ Field Maps uses this map. Build it on the **field view**, never the source.
 5. **Map properties**: set **search** on Hydrants by GIS ID, so crews can type the stamped serial at the top of the screen.
 6. **Save** as `Hydrant Inspections MVP` and share it with the MVP test group (the same group as the field view).
 
-> **Check in 11.5:** the Arcade in the next steps uses `FeatureSetByRelationshipName` with the relationship name `Hydrants_HydrantInspections`. Views normally keep that name; confirm it in the Arcade editor's profile variables. If the service shows a different name, use that one everywhere this guide says `Hydrants_HydrantInspections`.
+> **Note:** the Arcade in the next steps finds related records by GlobalID (`Filter(FeatureSetByName(...))`), not by relationship name, because the relationship name on the published view didn't match. It needs the inspections table's name as it shows in this map's Layers list (on the SFPUC portal: "Hydrant Inspections Field - HydrantInspections").
 
 ## Next
 
