@@ -48,6 +48,7 @@ Or get everything at once from [Downloads](../downloads.md).
 3. **Add `Hydrants` and `HydrantInspections` to a map.** Symbolize hydrants simply: water blue `#007DC3` points.
 4. **Share > Web Layer**, copying all data to the portal's data store.
     - Under **Configuration > Feature**, turn on **Create, Update, Delete, Sync**. Sync is needed for offline.
+    - In the same place, open the layer properties (pencil icon next to **Feature**) and **uncheck Only allow true curve updates by true curve clients**. Left on, Field Maps refuses to edit the layer with "Features with true curves cannot currently be edited", even though points and tables have no curves. Already published with it on? See [Troubleshooting](../reference/troubleshooting.md#features-with-true-curves-cannot-currently-be-edited).
     - Share it with yourself or the GIS team only. Crews get views instead (next step).
 5. **Check the result:** one service, with layer 0 = Hydrants and table 1 = HydrantInspections. Write down the service URL and item ID.
 

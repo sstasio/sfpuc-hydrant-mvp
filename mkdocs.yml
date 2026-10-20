@@ -68,6 +68,7 @@ nav:
       - Field Maps vs Survey123: reference/app-comparison.md
       - Pilot task cards: reference/task-cards.md
       - Esri 11.5 documentation: reference/esri-docs.md
+      - Troubleshooting: reference/troubleshooting.md
   - Downloads: downloads.md
 
 validation:
