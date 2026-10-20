@@ -1,0 +1,44 @@
+/* SFPUC brand, from sstasio/sfpuc-design-system tokens.
+   Header text-blue-dark with white type; links and accents text-blue (passes on white). */
+:root, [data-md-color-scheme="default"] {
+  --md-primary-fg-color: #004A80;
+  --md-primary-fg-color--light: #0074B8;
+  --md-primary-fg-color--dark: #002D74;
+  --md-primary-bg-color: #FFFFFF;
+  --md-accent-fg-color: #0074B8;
+  --md-typeset-a-color: #0074B8;
+  --md-default-bg-color: #FFFFFF;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #002D74;
+  --md-primary-fg-color--dark: #001E4D;
+  --md-accent-fg-color: #7CC4F0;
+  --md-typeset-a-color: #7CC4F0;
+}
+
+/* Water blue rule under the header, the brand color used as a graphic, not as text. */
+.md-header { border-bottom: 4px solid #007DC3; }
+.md-header__button.md-logo img { height: 2rem; width: auto; }
+
+/* Bigger tap targets for phone readers. */
+.md-nav__link { min-height: 44px; display: flex; align-items: center; }
+@media screen and (min-width: 76.25em) {
+  .md-nav__link { min-height: auto; }
+}
+
+/* "Check in 11.5" notes are blockquotes: give them the SFPUC warning treatment. */
+.md-typeset blockquote {
+  border-left: 4px solid #FBB034;
+  background: #FFF8EB;
+  color: #000000;
+  padding: 0.6rem 1rem;
+}
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+  background: #3A2E14;
+  color: #FFFFFF;
+}
+
+.md-typeset h1 { color: #004A80; font-weight: 700; }
+[data-md-color-scheme="slate"] .md-typeset h1 { color: #FFFFFF; }
+.md-typeset table:not([class]) { font-size: 0.75rem; }

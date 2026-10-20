@@ -1,0 +1,13 @@
+Task,Set,GISID,FoundAtLoc,Operable,Corrosion,Gauge,Spindle,LowPressure,CapsMissing,ShutoffValve,Obstructed,MissSerial,MissSpindle,MissMainSize,MissShutoffDist,DmgThreads,StrippedSpindle,Leak,PaintedOver,DmgCap,HardToOperate,NeedsFollowup,MinPhotos
+T1,A,0291,Yes,Yes,No,70,62,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,0
+T1,B,0353,Yes,Yes,No,68,60,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,0
+T2,A,0490,Yes,Yes,Yes,40,55,Yes,1,OK,No,No,No,No,No,No,No,No,No,No,No,Yes,1
+T2,B,0564,Yes,Yes,Yes,35,50,Yes,1,OK,No,No,No,No,No,No,No,No,No,No,No,Yes,1
+T3,A,3641,Yes,Limited,No,90,88,No,0,Buried,No,No,No,Yes,No,No,No,Yes,No,No,Yes,Yes,1
+T3,B,3402,Yes,Limited,No,70,65,No,0,Buried,No,No,No,Yes,No,No,No,Yes,No,No,Yes,Yes,1
+T4,A,0718,No,,,,,,,,,,,,,,,,,,,Yes,1
+T4,B,0570,No,,,,,,,,,,,,,,,,,,,Yes,1
+T5,A,3466,Yes,Yes,No,62,60,No,0,OK,Yes,No,No,No,No,No,No,No,No,No,No,Yes,1
+T5,B,3467,Yes,Yes,No,58,55,No,0,OK,Yes,No,No,No,No,No,No,No,No,No,No,Yes,1
+T6,A,3803,Yes,Yes,No,55,50,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,0
+T6,B,3808,Yes,Yes,No,54,50,No,0,OK,No,No,No,No,No,No,No,No,No,No,No,No,0

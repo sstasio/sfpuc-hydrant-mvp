@@ -1,0 +1,77 @@
+site_name: Hydrant Inspection MVP
+site_description: Step-by-step setup and reference for the SFPUC hydrant inspection MVP (Field Maps and Survey123, ArcGIS Enterprise 11.5)
+copyright: Services of the San Francisco Public Utilities Commission. Internal use.
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  font:
+    text: Libre Franklin
+    code: Roboto Mono
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.footer
+    - navigation.top
+    - navigation.indexes
+    - toc.follow
+    - search.highlight
+    - content.code.copy
+
+extra_css:
+  - stylesheets/sfpuc.css
+
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Start here: index.md
+  - Setup, step by step:
+      - 1. Build and publish the data: setup/01-build-data.md
+      - 2. Lock down the source and create views: setup/02-views.md
+      - 3. Build the web map: setup/03-web-map.md
+      - 4. Set up pop-ups: setup/04-popups.md
+      - 5. Build the Field Maps form: setup/05-field-maps-form.md
+      - 6. Publish the Survey123 form: setup/06-survey123.md
+      - 7. Test before the pilot: setup/07-test.md
+      - 8. Run the staff pilot: setup/08-pilot.md
+  - Reference:
+      - Schema and field reasons: reference/schema.md
+      - Field Maps vs Survey123: reference/app-comparison.md
+      - Pilot task cards: reference/task-cards.md
+      - Esri 11.5 documentation: reference/esri-docs.md
+  - Downloads: downloads.md
+
+validation:
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
