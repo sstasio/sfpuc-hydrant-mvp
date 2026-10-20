@@ -10,6 +10,10 @@ Both apps write to the same inspections table, so every inspection lands in one 
 
 > **About "Check in 11.5" notes.** This guide was written without access to the portal. Where you see **Check in 11.5**, the feature or label couldn't be confirmed for 11.5, so look for it in your UI before relying on it.
 
+## Latest changes
+
+- **2026-10-20:** Field Maps says "Features with true curves cannot currently be edited"? It's a service setting, not the data. [Fix it here](reference/troubleshooting.md#features-with-true-curves-cannot-currently-be-edited).
+
 ## Setup, in order
 
 Work through these top to bottom. Each step says who usually does it and what you should have when it's done.
@@ -45,6 +49,7 @@ flowchart LR
 - [Field Maps vs Survey123](reference/app-comparison.md): how the two forms differ, for the comparison
 - [Pilot task cards](reference/task-cards.md): printable Set A and Set B cards
 - [Esri 11.5 documentation](reference/esri-docs.md): links for each step
+- [Troubleshooting](reference/troubleshooting.md): fixes for problems found on the portal, starting with the Field Maps true curves warning
 - [Downloads](downloads.md): scripts, data, the XLSForm and the pilot scorecard
 
 > **Internal use.** This site holds the portal address, service names, SFFD inspector names and SFPUC logos. Keep the repo private and share it by adding people as collaborators.
