@@ -39,7 +39,24 @@ from build_hydrant_gdb import HYDRANTS, INSPECTIONS, INSPECTION_FIELDS  # noqa: 
 
 DEMO_CSV = os.path.join(HERE, "data", "demo_inspections.csv")
 AS_OF = dt.date(2026, 10, 20)
-DEMO_WHERE = "Remarks LIKE 'DEMO.%'"
+
+
+def actual_names(table):
+    """Map lower-case field name -> the name as stored. Publishing to the portal's
+    data store can lower-case every field name (GISID becomes gisid)."""
+    import arcpy
+
+    return {f.name.lower(): f.name for f in arcpy.ListFields(table)}
+
+
+def globalid_name(table):
+    import arcpy
+
+    return next(f.name for f in arcpy.ListFields(table) if f.type == "GlobalID")
+
+
+def demo_where(table):
+    return f"{actual_names(table)['remarks']} LIKE 'DEMO.%'"
 
 
 def targets(args):
@@ -53,7 +70,7 @@ def remove(inspections):
     import arcpy
 
     count = 0
-    with arcpy.da.UpdateCursor(inspections, ["OID@"], DEMO_WHERE) as cur:
+    with arcpy.da.UpdateCursor(inspections, ["OID@"], demo_where(inspections)) as cur:
         for _ in cur:
             cur.deleteRow()
             count += 1
@@ -63,17 +80,23 @@ def remove(inspections):
 def load(hydrants, inspections, csv_path, keep_dates=False):
     import arcpy
 
-    if any(True for _ in arcpy.da.SearchCursor(inspections, ["OID@"], DEMO_WHERE)):
+    if any(True for _ in arcpy.da.SearchCursor(inspections, ["OID@"], demo_where(inspections))):
         raise SystemExit("Demo inspections are already loaded. Run with --remove first to reload them")
 
-    guid_by_gisid = {gisid: guid for gisid, guid in arcpy.da.SearchCursor(hydrants, ["GISID", "GlobalID"])}
+    hydrant_fields = [actual_names(hydrants)["gisid"], globalid_name(hydrants)]
+    guid_by_gisid = {gisid: guid for gisid, guid in arcpy.da.SearchCursor(hydrants, hydrant_fields)}
     shift = dt.timedelta(0) if keep_dates else dt.date.today() - AS_OF
 
     names = [n for n, *_ in INSPECTION_FIELDS]
     types = {n: t for n, t, *_ in INSPECTION_FIELDS}
+    stored = actual_names(inspections)
+    missing = [n for n in names if n.lower() not in stored]
+    if missing:
+        raise SystemExit("The inspections table has no field " + ", ".join(missing)
+                         + ". Check that --service points at the source layer, with inspections as table 1")
     count, skipped = 0, set()
     with open(csv_path, newline="", encoding="utf-8") as f, \
-            arcpy.da.InsertCursor(inspections, names) as cur:
+            arcpy.da.InsertCursor(inspections, [stored[n.lower()] for n in names]) as cur:
         for row in csv.DictReader(f):
             guid = guid_by_gisid.get(row["GISID"])
             if guid is None:
