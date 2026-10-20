@@ -22,15 +22,39 @@ Use a private browser window.
 - [ ] The public view's URL doesn't return any records. Open `.../FeatureServer/1/query?where=1=1&f=json`; it should be empty or refused.
 - [ ] The source and field view URLs ask for a sign-in.
 
-## Pop-ups on a phone
+## Pop-ups and form on a phone, with the demo data
 
-- [ ] Hydrant banner color matches the latest inspection for one hydrant in each state. Use the [demo inspections](04-popups.md#load-demo-inspections): gray 0353, green 0291, yellow 0383, red 0358, not found 0718.
+Load the [demo inspections](04-popups.md#load-demo-inspections) first. Save the web map in Map Viewer before each test, then reopen the map in Field Maps (pull down on the map list to refresh), or the phone keeps the old pop-up.
+
+**Hydrant banners.** Tap each hydrant:
+
+- [ ] **0353:** gray, "Not inspected yet"
+- [ ] **0291:** green, "OK", 2 inspections
+- [ ] **0383:** yellow, "Inspection due"
+- [ ] **0358:** red, "Needs SFPUC follow-up"
+- [ ] **0718:** red, "Not found at location"
 - [ ] Banner and title read without zooming, one-handed.
-- [ ] Related inspections list shows newest first, each titled with date and company.
-- [ ] An inspection with no problems shows "None" under Issues found.
-- [ ] Photos open from the inspection pop-up.
+
+**Inspection pop-up.** Tap an inspection under the hydrant:
+
+- [ ] **0358:** the title shows date and company, the pressure line reads *38 psi measured · 50 psi stamped · LOW*, and Issues found lists Low pressure.
+- [ ] **3402:** Issues found shows "Operable: No" and "Stripped spindle".
+- [ ] **0291:** Issues found says "None".
+- [ ] Related inspections are listed newest first, each titled with date and company.
+- [ ] Photos open from the inspection pop-up (add one by hand; demo records have none).
+
+**New inspection from the form.** Open 0291 and add an inspection:
+
+- [ ] GIS ID, Location, Latitude and Longitude fill in by themselves. If one stays blank, check the layer name in its expression ([step 5b](05-field-maps-form.md#5b-calculated-fields)).
+- [ ] Switching Found at Location to No hides the Condition, Markings and Other issues groups.
+- [ ] A gauge of 40 (stamped is 62) sets Low Pressure and Needs Follow-up to Yes.
+- [ ] After you submit, 0291's banner turns red and the new inspection is at the top of its list.
+- [ ] Start the test record's Remarks with `DEMO.` so `--remove` clears it, or delete it in the source.
+
+**Before the pilot:**
+
 - [ ] All of the above also work with the map taken offline.
-- [ ] Demo inspections are removed (`--remove`) before the pilot starts.
+- [ ] Demo inspections are removed (`--remove`).
 
 ## Tap-test
 
