@@ -24,25 +24,27 @@ Build these groups. They mirror the Survey123 form so the pilot compares like wi
 
 Add each as a calculated expression on its field.
 
-**GIS ID** (for **Location**, swap `h.GISID` for `h.Location`):
+Field names are lower-case on the portal (`gisid`, not `GISID`), so the field lists below use lower case. If the relationship name differs on your service, copy it from **Profile variables > $feature** in the Arcade editor.
+
+**GIS ID** (for **Location**, swap `h.gisid` for `h.location`):
 
 ```arcade
-var h = First(FeatureSetByRelationshipName($feature, "Hydrants_HydrantInspections", ["GISID", "Location"], false));
-return IIf(IsEmpty(h), null, h.GISID);
+var h = First(FeatureSetByRelationshipName($feature, "Hydrants_HydrantInspections", ["gisid", "location"], false));
+return IIf(IsEmpty(h), null, h.gisid);
 ```
 
 **Latitude** (for **Longitude**, use `.x` instead of `.y`). The sample data is stored in WGS84, so y is latitude.
 
 ```arcade
-var h = First(FeatureSetByRelationshipName($feature, "Hydrants_HydrantInspections", ["GlobalID"], true));
+var h = First(FeatureSetByRelationshipName($feature, "Hydrants_HydrantInspections", ["globalid"], true));
 return IIf(IsEmpty(h), null, Round(Geometry(h).y, 6));
 ```
 
 **Low Pressure:** Yes when the measured gauge pressure is below the stamped spindle pressure.
 
 ```arcade
-var g = $feature.Gauge;
-var s = $feature.Spindle;
+var g = $feature.gauge;
+var s = $feature.spindle;
 return IIf(!IsEmpty(g) && !IsEmpty(s) && g < s, "Yes", "No");
 ```
 
@@ -50,12 +52,12 @@ return IIf(!IsEmpty(g) && !IsEmpty(s) && g < s, "Yes", "No");
 
 ```arcade
 var f = $feature;
-var flags = [f.Obstructed, f.LowPressure, f.MissSerial, f.MissSpindle, f.MissMainSize,
-             f.MissShutoffDist, f.DmgThreads, f.StrippedSpindle, f.Leak, f.PaintedOver,
-             f.DmgCap, f.HardToOperate];
-var issue = f.FoundAtLoc == "No" || (!IsEmpty(f.Operable) && f.Operable != "Yes")
-            || DefaultValue(f.CapsMissing, 0) > 0
-            || (!IsEmpty(f.ShutoffValve) && f.ShutoffValve != "OK")
+var flags = [f.obstructed, f.lowpressure, f.missserial, f.missspindle, f.missmainsize,
+             f.missshutoffdist, f.dmgthreads, f.strippedspindle, f.leak, f.paintedover,
+             f.dmgcap, f.hardtooperate];
+var issue = f.foundatloc == "No" || (!IsEmpty(f.operable) && f.operable != "Yes")
+            || DefaultValue(f.capsmissing, 0) > 0
+            || (!IsEmpty(f.shutoffvalve) && f.shutoffvalve != "OK")
             || Includes(flags, "Yes");
 return IIf(issue, "Yes", "No");
 ```
@@ -65,7 +67,7 @@ return IIf(issue, "Yes", "No");
 On the **Condition**, **Markings missing** and **Other issues** groups:
 
 ```arcade
-$feature.FoundAtLoc == "Yes"
+$feature.foundatloc == "Yes"
 ```
 
 ## 5d. Offline

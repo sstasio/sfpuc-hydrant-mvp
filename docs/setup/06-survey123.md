@@ -56,10 +56,10 @@ This lets crews open Survey123 from a hydrant in Field Maps with the hydrant alr
 var params = {
   "itemID": "SURVEY_ITEM_ID",
   "portalUrl": "https://gis.sfpuc.org/portal",
-  "field:HydrantGUID": $feature.GlobalID,
-  "field:GISID": $feature.GISID,
-  "field:Location": $feature.Location,
-  "field:Spindle": $feature.SpindlePSI,
+  "field:HydrantGUID": $feature.globalid,
+  "field:GISID": $feature.gisid,
+  "field:Location": $feature.location,
+  "field:Spindle": $feature.spindlepsi,
   "field:Lat": Round(Geometry($feature).y, 6),
   "field:Lon": Round(Geometry($feature).x, 6)
 };

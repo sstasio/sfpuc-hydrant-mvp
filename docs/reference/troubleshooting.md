@@ -50,3 +50,24 @@ If the warning is still there after this, it's the Designer bug itself rather th
 ### Stop it coming back
 
 If you ever republish or overwrite the source from Pro, in **Share As Web Layer > Configuration**, open the layer properties (pencil icon next to **Feature**) and **uncheck Only allow true curve updates by true curve clients**. Leave **Allow update of true curves** checked. This is in [step 1](../setup/01-build-data.md) now too.
+
+## Pop-up says "Some expressions failed to evaluate"
+
+Field Maps shows **Unable to Load All Data** and a **View Errors** row where an Arcade element should be. The rest of the pop-up still loads.
+
+### 1. Read the exact error
+
+- **In Field Maps:** tap **View Errors**. It lists each failed expression by name with its message. Take a screenshot.
+- **In Map Viewer (faster to fix):** open the pop-up, click the failing expression to open the Arcade editor, and click **Run**. The error and its line number appear under the code. Run tests against the first feature in the layer, so pick a hydrant that has inspections if the error is about related records.
+
+### 2. Match it to the cause
+
+| Message mentions | Cause | Fix |
+|---|---|---|
+| A field name, "field not found", or an invalid SQL / order-by | Field names were lower-cased when you published (`InspDate` became `inspdate`). Field lists and sort strings in quotes must match exactly | Use the lower-case Arcade in [step 4](../setup/04-popups.md) and [step 5](../setup/05-field-maps-form.md) |
+| The relationship, or "invalid relationship name" | The relationship has a different name on the service | In the Arcade editor open **Profile variables > $feature**, find the related records entry, and paste its name into `var rel = ...` |
+| A table or layer not found | The inspections table isn't in the web map, or editing/query is off for it in the view | Add the field view's HydrantInspections table to the map (step 3) |
+
+### 3. Check it worked
+
+Close and reopen the map in Field Maps (pull down on the map list to refresh) so it picks up the saved pop-up, then tap hydrant 0291. With the demo inspections loaded, the banner should be green ("OK").

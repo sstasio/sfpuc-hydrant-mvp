@@ -8,6 +8,8 @@ See both pop-ups on a phone in the [pop-up mockups](https://claude.ai/artifact/4
 
 > **Check in 11.5, on a phone:** that Field Maps shows the status banner's background color (fallback under [Expression A](#expression-a-status-banner-arcade-element)), and that the **Related records** element exists in 11.5's Map Viewer (fallback in element 6 below).
 
+> **Field names are lower-case on the portal.** Publishing turned `GISID` into `gisid`, `InspDate` into `inspdate`, and so on. Arcade's `$feature.GISID` still works, but field lists and sort strings inside quotes are passed to the data as they are, so the Arcade on this page uses the lower-case names throughout. If an expression fails, see [Pop-up says "Some expressions failed to evaluate"](../reference/troubleshooting.md#pop-up-says-some-expressions-failed-to-evaluate).
+
 ## Rules for both pop-ups
 
 - **Answer first.** The top of each pop-up says whether the hydrant needs attention, so a crew member gets it without scrolling.
@@ -54,33 +56,35 @@ Turn off every other field (GISID and Location are already in the title and text
 
 ```arcade
 // Status banner for the hydrant pop-up. Reads the latest related inspection.
-var insp = FeatureSetByRelationshipName($feature, "Hydrants_HydrantInspections",
-    ["InspDate", "EngineCo", "NeedsFollowup", "FoundAtLoc"], false);
+// Relationship name: in the Arcade editor, open Profile variables > $feature and
+// check the related records entry. Paste that name here if it differs.
+var rel = "Hydrants_HydrantInspections";
+var insp = FeatureSetByRelationshipName($feature, rel, ["*"], false);
 var n = Count(insp);
-var last = First(OrderBy(insp, "InspDate DESC"));
+var last = First(OrderBy(insp, "inspdate DESC"));
 
 var bg = "#5B6770"; var fg = "#FFFFFF";
 var head = "Not inspected yet";
 var sub = "No inspections on record";
 
 if (!IsEmpty(last)) {
-  var days = DateDiff(Now(), last.InspDate, "days");
-  sub = "Last inspected " + Text(last.InspDate, "MMM D, Y") + " by " + last.EngineCo
+  var days = DateDiff(Now(), last.inspdate, "days");
+  sub = "Last inspected " + Text(last.inspdate, "MMM D, Y") + " by " + last.engineco
         + " · " + n + IIf(n == 1, " inspection", " inspections");
-  if (last.FoundAtLoc == "No") { bg = "#BF2620"; head = "Not found at location"; }
-  else if (last.NeedsFollowup == "Yes") { bg = "#BF2620"; head = "Needs SFPUC follow-up"; }
+  if (last.foundatloc == "No") { bg = "#BF2620"; head = "Not found at location"; }
+  else if (last.needsfollowup == "Yes") { bg = "#BF2620"; head = "Needs SFPUC follow-up"; }
   else if (days > 365) { bg = "#FBB034"; fg = "#000000"; head = "Inspection due"; }
   else { bg = "#597E26"; head = "OK"; }
 }
 
 return {
   type: "text",
-  text: `<div style="background-color:${bg};color:${fg};padding:10px 12px;border-radius:6px;">`
-      + `<b style="font-size:16px;">${head}</b><br/><span style="font-size:13px;">${sub}</span></div>`
+  text: "<div style='background-color:" + bg + ";color:" + fg + ";padding:10px 12px;border-radius:6px;'>"
+      + "<b style='font-size:16px;'>" + head + "</b><br/><span style='font-size:13px;'>" + sub + "</span></div>"
 };
 ```
 
-> **Check in 11.5:** that Field Maps supports Arcade elements and inline `background-color` on `div`. If the background doesn't show on the phone, swap to colored bold text: `<b style="color:#BF2620;">${head}</b>`.
+> **Check in 11.5:** that Field Maps supports Arcade elements and inline `background-color` on `div`. If the background doesn't show on the phone, swap the `<div ...>` for colored bold text: `"<b style='color:" + bg + ";'>" + head + "</b>"` (use black instead of yellow for "Inspection due").
 
 ## Inspection pop-up
 
@@ -112,7 +116,7 @@ Turn off: HydrantGUID, GISID, Location, Lat, Lon, EngineCo (it's in the title), 
 ### Expression B: title
 
 ```arcade
-Text($feature.InspDate, "MMM D, Y") + " · " + $feature.EngineCo
+Text($feature.inspdate, "MMM D, Y") + " · " + $feature.engineco
 ```
 
 ### Expression C: result banner (Arcade element)
@@ -120,12 +124,12 @@ Text($feature.InspDate, "MMM D, Y") + " · " + $feature.EngineCo
 ```arcade
 var f = $feature;
 var bg = "#597E26"; var head = "No follow-up needed";
-if (f.FoundAtLoc == "No") { bg = "#BF2620"; head = "Hydrant not found at location"; }
-else if (f.NeedsFollowup == "Yes") { bg = "#BF2620"; head = "Needs SFPUC follow-up"; }
+if (f.foundatloc == "No") { bg = "#BF2620"; head = "Hydrant not found at location"; }
+else if (f.needsfollowup == "Yes") { bg = "#BF2620"; head = "Needs SFPUC follow-up"; }
 return {
   type: "text",
-  text: `<div style="background-color:${bg};color:#FFFFFF;padding:10px 12px;border-radius:6px;">`
-      + `<b style="font-size:16px;">${head}</b></div>`
+  text: "<div style='background-color:" + bg + ";color:#FFFFFF;padding:10px 12px;border-radius:6px;'>"
+      + "<b style='font-size:16px;'>" + head + "</b></div>"
 };
 ```
 
@@ -137,23 +141,23 @@ Lists only the problems, instead of 11 Yes/No rows.
 Expects($feature, "*");
 var f = $feature;
 var flags = [
-  ["Obstructed", "Obstructed"],
-  ["MissSerial", "Serial number missing"],
-  ["MissSpindle", "Spindle pressure not stamped"],
-  ["MissMainSize", "Main size not labeled"],
-  ["MissShutoffDist", "Shutoff distance not labeled"],
-  ["DmgThreads", "Damaged outlet threads"],
-  ["StrippedSpindle", "Stripped spindle"],
-  ["Leak", "Leak"],
-  ["PaintedOver", "Painted over"],
-  ["DmgCap", "Damaged cap"],
-  ["HardToOperate", "Hard to operate"]
+  ["obstructed", "Obstructed"],
+  ["missserial", "Serial number missing"],
+  ["missspindle", "Spindle pressure not stamped"],
+  ["missmainsize", "Main size not labeled"],
+  ["missshutoffdist", "Shutoff distance not labeled"],
+  ["dmgthreads", "Damaged outlet threads"],
+  ["strippedspindle", "Stripped spindle"],
+  ["leak", "Leak"],
+  ["paintedover", "Painted over"],
+  ["dmgcap", "Damaged cap"],
+  ["hardtooperate", "Hard to operate"]
 ];
 var out = [];
-if (f.LowPressure == "Yes") Push(out, "Low pressure");
-if (!IsEmpty(f.Operable) && f.Operable != "Yes") Push(out, "Operable: " + f.Operable);
-if (DefaultValue(f.CapsMissing, 0) > 0) Push(out, f.CapsMissing + " cap(s) missing");
-if (!IsEmpty(f.ShutoffValve) && f.ShutoffValve != "OK") Push(out, "Shutoff valve: " + DomainName(f, "ShutoffValve"));
+if (f.lowpressure == "Yes") Push(out, "Low pressure");
+if (!IsEmpty(f.operable) && f.operable != "Yes") Push(out, "Operable: " + f.operable);
+if (DefaultValue(f.capsmissing, 0) > 0) Push(out, f.capsmissing + " cap(s) missing");
+if (!IsEmpty(f.shutoffvalve) && f.shutoffvalve != "OK") Push(out, "Shutoff valve: " + DomainName(f, "shutoffvalve"));
 for (var i in flags) {
   if (f[flags[i][0]] == "Yes") Push(out, flags[i][1]);
 }
@@ -166,11 +170,11 @@ return { type: "text", text: "<b>Issues found</b><br/>• " + Concatenate(out, "
 ### Expression E: pressure line (attribute expression)
 
 ```arcade
-var g = $feature.Gauge; var s = $feature.Spindle;
+var g = $feature.gauge; var s = $feature.spindle;
 if (IsEmpty(g)) return "Not measured";
 var t = g + " psi measured";
 if (!IsEmpty(s)) t += " · " + s + " psi stamped";
-if ($feature.LowPressure == "Yes") t += " · LOW";
+if ($feature.lowpressure == "Yes") t += " · LOW";
 return t;
 ```
 
