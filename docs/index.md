@@ -13,6 +13,7 @@ Both apps write to the same inspections table, so every inspection lands in one 
 **2026-10-20**
 
 - **Offline basemap.** The Enterprise gallery basemaps can't go offline. Use an Esri "for Export" basemap added to the portal with stored ArcGIS Online credentials (pilot), or your own vector tile package (citywide). See [Offline basemap](reference/offline-basemap.md).
+- **Lower-case field names.** The portal can store field names in lower case (`gisid`). The demo loader and pilot data check now match field names in any case.
 - **Demo inspections** to show every pop-up state (never inspected, OK, due, follow-up, not found, low pressure). See [Load demo inspections](setup/04-popups.md#load-demo-inspections).
 - **"Features with true curves cannot currently be edited"** in Field Maps is a service setting, not the data. [Fix it here](reference/troubleshooting.md#features-with-true-curves-cannot-currently-be-edited).
 - **Crews edit through views, not the published layer.** The source is owner-only; a field view feeds Field Maps; an optional public view takes Survey123 submissions. See [step 2](setup/02-views.md).

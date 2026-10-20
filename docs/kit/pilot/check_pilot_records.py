@@ -54,9 +54,16 @@ def norm(field, value):
     return value
 
 
+# Column names the checks look up. Exports from the portal can have every field name
+# lower-cased (gisid, remarks), so headers are matched to these regardless of case.
+KNOWN_COLUMNS = (["GISID", "GlobalID", "HydrantGUID", "Remarks", "OBJECTID", "PhotoCount"]
+                 + CHECK_FIELDS)
+
+
 def read_csv(path):
+    canonical = {c.lower(): c for c in KNOWN_COLUMNS}
     with open(path, newline="", encoding="utf-8-sig") as f:
-        return list(csv.DictReader(f))
+        return [{canonical.get(k.lower(), k): v for k, v in r.items()} for r in csv.DictReader(f)]
 
 
 def main():
@@ -77,7 +84,7 @@ def main():
     for rec in records:
         m = re.match(r"\s*P(\d+)\b", rec.get("Remarks") or "", re.I)
         gisid = (rec.get("GISID") or "").strip()
-        oid = rec.get("OBJECTID") or rec.get("ObjectID") or ""
+        oid = rec.get("OBJECTID") or ""
         if not m:
             continue  # not a pilot record
         pnum = int(m.group(1))
