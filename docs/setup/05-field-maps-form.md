@@ -63,7 +63,7 @@ Field Maps won't let you add groups to an empty form, so put the fields on the f
 | Other issues | `dmgcap` | Damaged cap | Switch | | |
 | Other issues | `hardtooperate` | Hard to operate | Switch | | |
 | Follow-up | `needsfollowup` | Needs SFPUC follow-up | Switch | | Calculated |
-| Follow-up | `remarks` | Remarks | Multiline text | | |
+| *(no group, last on the form)* | `remarks` | Remarks | Multiline text | | Description: `Anything else you noticed. If you picked Other for inspector, type your name here.` |
 
 ### Then group them
 
@@ -73,6 +73,7 @@ A group is a heading that holds fields and can collapse. With the fields on the 
 2. With the group selected, set its **Label** in its settings, and set **Initial state** to **Expanded**.
 3. Drag that group's fields (the Group column in the table above) into it.
 4. Repeat until you have the seven groups below, in this order. Drag a group up or down to reorder it, and its fields move with it.
+5. Leave **Remarks** out of every group, as the last thing on the form, below Follow-up. If it ends up inside a group, drag it out and drop it at the very bottom.
 
 | Group label | Shows | Initial state |
 |---|---|---|
@@ -83,6 +84,10 @@ A group is a heading that holds fields and can collapse. With the fields on the 
 | Markings missing | Only when found = Yes | Expanded |
 | Other issues | Only when found = Yes | Expanded |
 | Follow-up | Always | Expanded |
+
+Remarks stays outside the groups so it always shows. Inside Condition, Markings missing or Other issues, it would hide whenever found at location is No. Those are the inspections that most need a note, and an inspector who picks **Other** types their name there.
+
+To add the note crews see, select Remarks and type it in the **Description** box in its settings. It shows under the Remarks label.
 
 Leave these out of the form: `hydrantguid` (Field Maps fills it when the inspection is added from a hydrant), ObjectID, GlobalID and the editor tracking fields. Photos come from the attachments section Field Maps adds on its own.
 
@@ -177,6 +182,7 @@ On a phone, reopen the map in Field Maps (pull down on the map list to refresh i
 - [ ] Until found at location is set to Yes, the Condition, Markings missing and Other issues groups are hidden.
 - [ ] Entering Spindle 62 and Gauge 40 turns Low pressure and Needs SFPUC follow-up on by themselves. Both pressures are needed, because crews type the stamped spindle pressure in.
 - [ ] You can't submit without an engine company, an inspector and an answer for found at location.
+- [ ] With found at location set to No, Remarks still shows at the bottom of the form, below Follow-up.
 
 ## 5d. Offline
 
