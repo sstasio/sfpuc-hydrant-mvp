@@ -118,6 +118,49 @@ Run these as a crew member would, with the crew test account, on a phone, standi
 - [ ] Searching `291` without the leading zero either finds 0291 or shows nothing. Note which, since crews will type it both ways.
 - [ ] Sign in to Field Maps with an account that isn't in the MVP test group. The map doesn't appear in its list.
 
+## Survey123 in depth
+
+Field scenarios 2 and 7 cover the basics. This section works through the rest of the survey. Use a phone with the Survey123 app installed and signed in with the crew test account, and the survey downloaded once in the app. Start every Remarks with `DEMO.`.
+
+**Opening the survey from the button**
+
+- [ ] The blue "Inspect in Survey123" button shows on every hydrant pop-up.
+- [ ] Tapping it opens a new, empty inspection for that hydrant, not the app's survey list.
+- [ ] Back in Field Maps, open a different hydrant and tap its button. The form shows the new hydrant, with nothing left over from the last one.
+- [ ] On a computer, the button opens the survey in the browser. It asks you to sign in when the survey uses the field view.
+
+**Values carried over from the hydrant**
+
+- [ ] **0570** (NW O'FARRELL ST & MASON ST): the location arrives whole, with the apostrophe and the ampersand. Both characters can break a link.
+- [ ] **0718**: Spindle Pressure arrives as 115. A value over 100 checks that the number isn't cut short.
+- [ ] After sending, the record's `hydrantguid`, `lat` and `lon` match the hydrant (see [Check the records in the source](#check-the-records-in-the-source)).
+
+**The form itself**
+
+- [ ] Inspection Date defaults to now and can be changed.
+- [ ] Typing `E1` in Engine Company narrows the list to E1 companies.
+- [ ] Low Pressure can't be typed into. It only changes from the gauge and spindle values.
+- [ ] Ticking "Serial number missing" and "Leak" sets those two flags to Yes on the record, and the other eight to No.
+- [ ] Clearing every marking and issue (and with no other problems) sets Needs Follow-up back to No.
+- [ ] Two photos send, and both show in the inspection pop-up in Field Maps.
+- [ ] The Sent box lists the record by GIS ID and date, for example `0291 2026-10-21`.
+
+**Drafts and sending**
+
+- [ ] Close the app halfway through a form and choose to save it. The form waits in Drafts and opens again with your answers in place.
+- [ ] Submitting with a required answer missing (Engine Company, Inspector or Operable) is blocked, and the form jumps to the question.
+- [ ] Two forms sent from the Outbox at once both arrive, each under its own hydrant.
+
+**Without signing in** (only if you made the public view and shared the survey with Everyone)
+
+- [ ] In a private browser window, open the survey's share link with a hydrant's details added (copy them from the button's link). The form opens with no sign-in and the hydrant filled in.
+- [ ] The record arrives in the source with no `created_user`, and the Inspector you picked is saved.
+- [ ] The person who sent it can't see or open any inspections afterwards.
+
+**For the pilot scoring**
+
+- [ ] Time one full inspection in each app, from tapping the hydrant to sent, and note both times on the [pilot scorecard](08-pilot.md).
+
 ## Check the records in the source
 
 After the scenarios, open the **source** layer's inspections table in Map Viewer (as yourself) and look at the new records:
