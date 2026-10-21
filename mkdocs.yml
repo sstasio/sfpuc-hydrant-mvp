@@ -54,6 +54,7 @@ markdown_extensions:
 
 nav:
   - Start here: index.md
+  - MVP demo, Oct 22: demo-2026-10-22.md
   - Setup, step by step:
       - 1. Build and publish the data: setup/01-build-data.md
       - 2. Lock down the source and create views: setup/02-views.md
