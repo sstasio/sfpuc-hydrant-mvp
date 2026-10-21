@@ -136,14 +136,15 @@ var s = $feature.spindle;
 return IIf(!IsEmpty(g) && !IsEmpty(s) && g < s, "Yes", "No");
 ```
 
-**Needs SFPUC follow-up** (title `Needs follow-up`): Yes if any problem is flagged.
+**Needs SFPUC follow-up** (title `Needs follow-up`): Yes if any problem is flagged. It works out low pressure from the gauge and spindle itself rather than reading the Low pressure field, because Field Maps doesn't reliably rerun one calculated field when another calculated field changes.
 
 ```arcade
 var f = $feature;
-var flags = [f.obstructed, f.lowpressure, f.missserial, f.missspindle, f.missmainsize,
+var low = !IsEmpty(f.gauge) && !IsEmpty(f.spindle) && f.gauge < f.spindle;
+var flags = [f.obstructed, f.missserial, f.missspindle, f.missmainsize,
              f.missshutoffdist, f.dmgthreads, f.strippedspindle, f.leak, f.paintedover,
              f.dmgcap, f.hardtooperate];
-var issue = f.foundatloc == "No" || (!IsEmpty(f.operable) && f.operable != "Yes")
+var issue = f.foundatloc == "No" || low || (!IsEmpty(f.operable) && f.operable != "Yes")
             || DefaultValue(f.capsmissing, 0) > 0
             || (!IsEmpty(f.shutoffvalve) && f.shutoffvalve != "OK")
             || Includes(flags, "Yes");
