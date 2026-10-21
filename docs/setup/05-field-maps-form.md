@@ -16,38 +16,23 @@ The form is saved in the web map, so build it on `Hydrant Inspections MVP`, the 
 4. In the list of layers and tables, pick the **HydrantInspections** table, not the Hydrants layer.
 5. If it asks how to start, choose to start from the pop-up or from a new, blank form. Both give the same result here, because you'll set every field below.
 
-The builder has three parts:
+In the builder:
 
-- **Left:** the elements you can add (Group, and one entry per input type such as Switch, Combo box, Number and Date), plus the table's **fields**.
-- **Middle:** the form as crews will see it, top to bottom.
-- **Right:** the settings for whatever you select in the middle.
+- **The form** in the middle shows what crews will see, top to bottom.
+- **Fields** lists the table's fields, ready to drag onto the form.
+- **Form elements**, on the right side of the screen, holds **Group** and the other elements you can add.
+- **Settings** for whatever you select on the form open when you select it.
 
-### Add the groups
+### Add the fields first
 
-A group is a heading that holds fields and can collapse.
+Field Maps won't let you add groups to an empty form, so put the fields on the form first and group them after.
 
-1. Drag **Group** from the left into the middle.
-2. With the group selected, set its **Label** on the right, and set **Initial state** to **Expanded**.
-3. Repeat until you have the seven groups below, in this order. Drag them up or down to reorder.
-
-| Group label | Shows | Initial state |
-|---|---|---|
-| Hydrant | Always | Expanded |
-| Crew | Always | Expanded |
-| Found at location | Always | Expanded |
-| Condition | Only when found = Yes ([5c](#5c-conditional-visibility)) | Expanded |
-| Markings missing | Only when found = Yes | Expanded |
-| Other issues | Only when found = Yes | Expanded |
-| Follow-up | Always | Expanded |
-
-### Add the fields
-
-Drag each field from the field list into its group, then select it and set it up on the right:
-
-- **Display name:** the label crews see (the Label column below).
-- **Input type:** what crews tap. For a switch, set the **On** value to `Yes` and **Off** to `No`.
-- **Required:** on for the fields marked Yes.
-- **Editable:** leave on, except where the table says Calculated. Calculated fields turn read-only by themselves.
+1. Drag each field in the table below from the **Fields** list onto the form, top to bottom in the order shown.
+2. Select each field and set it up in its settings:
+    - **Display name:** the label crews see (the Label column).
+    - **Input type:** what crews tap. For a switch, set the **On** value to `Yes` and **Off** to `No`.
+    - **Required:** on for the fields marked Yes.
+    - **Editable:** leave on, except where the table says Calculated. Calculated fields turn read-only by themselves.
 
 | Group | Field | Label | Input type | Required | Notes |
 |---|---|---|---|---|---|
@@ -79,6 +64,25 @@ Drag each field from the field list into its group, then select it and set it up
 | Other issues | `hardtooperate` | Hard to operate | Switch | | |
 | Follow-up | `needsfollowup` | Needs SFPUC follow-up | Switch | | Calculated |
 | Follow-up | `remarks` | Remarks | Multiline text | | |
+
+### Then group them
+
+A group is a heading that holds fields and can collapse. With the fields on the form:
+
+1. Drag **Group** from **Form elements** (right side of the screen) onto the form, just above the first field it should hold.
+2. With the group selected, set its **Label** in its settings, and set **Initial state** to **Expanded**.
+3. Drag that group's fields (the Group column in the table above) into it.
+4. Repeat until you have the seven groups below, in this order. Drag a group up or down to reorder it, and its fields move with it.
+
+| Group label | Shows | Initial state |
+|---|---|---|
+| Hydrant | Always | Expanded |
+| Crew | Always | Expanded |
+| Found at location | Always | Expanded |
+| Condition | Only when found = Yes ([5c](#5c-conditional-visibility)) | Expanded |
+| Markings missing | Only when found = Yes | Expanded |
+| Other issues | Only when found = Yes | Expanded |
+| Follow-up | Always | Expanded |
 
 Leave these out of the form: `hydrantguid` (Field Maps fills it when the inspection is added from a hydrant), ObjectID, GlobalID and the editor tracking fields. Photos come from the attachments section Field Maps adds on its own.
 
