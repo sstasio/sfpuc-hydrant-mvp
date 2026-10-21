@@ -34,7 +34,7 @@ Layer: **Hydrants**. Elements top to bottom:
 | 2 | **Arcade** | Status banner (expression A below) |
 | 3 | **Text** | `{Location}` |
 | 4 | **Fields** | See field list below |
-| 5 | **Text** | "Inspect in Survey123" link. Add it in [step 6](06-survey123.md#6d-add-the-inspect-in-survey123-link), once the survey is published. Remove it after the pilot if Field Maps wins |
+| 5 | **Arcade** | "Inspect in Survey123" button. Add it in [step 6](06-survey123.md#6d-add-the-inspect-in-survey123-button), once the survey is published. Remove it after the pilot if Field Maps wins |
 | 6 | **Related records** | Inspections, sorted by Inspection Date, newest first, show 3. **Check in 11.5** that this element exists in 11.5 Map Viewer; if not, Field Maps still lists related inspections at the bottom of the pop-up |
 
 Fields element (in this order, with these display labels):
