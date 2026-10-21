@@ -175,7 +175,7 @@ On a phone, reopen the map in Field Maps (pull down on the map list to refresh i
 
 - [ ] The Hydrant group shows 0291, its location, and a latitude and longitude in degrees, before you enter anything.
 - [ ] Until found at location is set to Yes, the Condition, Markings missing and Other issues groups are hidden.
-- [ ] A gauge of 40 turns Low pressure and Needs SFPUC follow-up on by themselves.
+- [ ] Entering Spindle 62 and Gauge 40 turns Low pressure and Needs SFPUC follow-up on by themselves. Both pressures are needed, because crews type the stamped spindle pressure in.
 - [ ] You can't submit without an engine company, an inspector and an answer for found at location.
 
 ## 5d. Offline
