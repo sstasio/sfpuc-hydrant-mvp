@@ -16,9 +16,8 @@ Both apps write to the same inspections table, so every inspection lands in one 
 - **Lower-case field names.** The portal can store field names in lower case (`gisid`). The demo loader and pilot data check now match field names in any case.
 - **Demo inspections** to show every pop-up state (never inspected, OK, due, follow-up, not found, low pressure). See [Load demo inspections](setup/04-popups.md#load-demo-inspections).
 - **"Features with true curves cannot currently be edited"** in Field Maps is a service setting, not the data. [Fix it here](reference/troubleshooting.md#features-with-true-curves-cannot-currently-be-edited).
-- **Crews edit through views, not the published layer.** The source is owner-only; a field view feeds Field Maps; an optional public view takes Survey123 submissions. See [step 2](setup/02-views.md).
+- **Crews edit through views, not the published layer.** The source is owner-only, and one field view feeds both Field Maps and Survey123. The portal doesn't allow anonymous access, so there's no public view. See [step 2](setup/02-views.md).
 - **Keep every field in both views.** Privacy comes from the view settings, not from hiding fields. See [fields in each view](setup/02-views.md#fields-in-each-view).
-- **Public view: Add greyed out?** Turn on Add in the source item's Settings first. **Public data collection** goes on for the public view only, with a five-point safety checklist. See [step 2c](setup/02-views.md#2c-create-the-public-view-optional).
 - **New pop-up spec** with status banners, short labels, an "Issues found" list and [phone mockups](https://claude.ai/artifact/4VeRmAyeFMtAFJMPuF19c1). See [step 4](setup/04-popups.md).
 - **The Survey123 link** is an Arcade element that returns an "Inspect in Survey123" button. See [step 6d](setup/06-survey123.md#6d-add-the-inspect-in-survey123-button).
 - **Running the build script:** in a Pro notebook use `%run`; in the Python window use the `runpy` line; `propy` only works in the Python Command Prompt. See [step 1](setup/01-build-data.md).
@@ -33,12 +32,12 @@ Work through these top to bottom. Each step says who usually does it and what yo
 | Step | What you do | Who | Done when |
 |---|---|---|---|
 | [1. Build and publish the data](setup/01-build-data.md) | Run the script in ArcGIS Pro, publish one hosted layer | GIS analyst | Hydrants and HydrantInspections are on the portal |
-| [2. Lock down the source and create views](setup/02-views.md) | Make the source owner-only, create the field view and (optionally) the public view | GIS analyst | Crews can only reach data through views |
+| [2. Lock down the source and create views](setup/02-views.md) | Make the source owner-only, create the field view | GIS analyst | Crews can only reach data through views |
 | [3. Build the web map](setup/03-web-map.md) | Map for Field Maps, built on the field view | GIS analyst | `Hydrant Inspections MVP` map is saved and shared |
 | [4. Set up pop-ups](setup/04-popups.md) | Hydrant and inspection pop-ups with status banners | GIS analyst | Pop-ups show status at a glance on a phone |
 | [5. Build the Field Maps form](setup/05-field-maps-form.md) | Form groups, calculated fields, offline area | GIS analyst | A test inspection saves from Field Maps |
 | [6. Publish the Survey123 form](setup/06-survey123.md) | Open the XLSForm in Connect, brand it, publish, add the pop-up link | GIS analyst, portal admin | A test inspection saves from Survey123 |
-| [7. Test before the pilot](setup/07-test.md) | Crew-account test, public test, phone tap-test | GIS analyst | Every box on the test checklist is ticked |
+| [7. Test before the pilot](setup/07-test.md) | Crew-account test, field scenarios, Survey123 tests, phone tap-test | GIS analyst | Every box on the test checklist is ticked |
 | [8. Run the staff pilot](setup/08-pilot.md) | Prep, sessions with SFFD testers, scoring, decision | Pilot team | One app chosen |
 
 ## How the pieces fit
@@ -47,10 +46,8 @@ Work through these top to bottom. Each step says who usually does it and what yo
 flowchart LR
   gdb["build_hydrant_gdb.py<br/>(ArcGIS Pro)"] --> src[("Source layer<br/>owner only")]
   src --> fv["Field view<br/>MVP test group"]
-  src --> pv["Public view (optional)<br/>add only, can't see"]
   fv --> map["Web map<br/>Hydrant Inspections MVP"] --> fm["Field Maps"]
-  fv -. "if no public view" .-> s123["Survey123 form"]
-  pv --> s123
+  fv --> s123["Survey123 form"]
   fm -- "Inspect in Survey123 link" --> s123
   src --> pilot["Pilot data check,<br/>dashboard later"]
 ```

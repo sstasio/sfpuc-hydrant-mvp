@@ -27,7 +27,7 @@
 | Pilot lead | GIS analyst who built the MVP | Owns the plan, sets up the apps, runs the team scoring, writes the recommendation |
 | Facilitator | GIS analyst or SFFD liaison | Runs each session from the script below. Reads the words, doesn't coach |
 | Observer | Second GIS staff member | Times each task, logs it in the scorecard, notes where the tester got stuck |
-| Portal admin | SFPUC Enterprise admin | Test accounts, group sharing, and the yes/no on public (no sign-in) Survey123 |
+| Portal admin | SFPUC Enterprise admin | Test accounts and group sharing |
 | SFFD contact | Battalion or station officer | Picks testers, books station time |
 | Data checker | GIS analyst | Exports the inspections after each session and runs the checker |
 | Water Dept reviewer | Hydrant maintenance lead | Joins the team scoring: is the data what maintenance needs? |
@@ -55,7 +55,6 @@ Do these after setup steps 1 to 7.
 
 - [ ] **Clean the inspector list.** `data/inspectors.csv` picked up remark words from the SFFD report when the PDF wrapped lines, such as "Main Size Not Labeled Adams,E" and "Excessive Rust McGorrin,B". Roughly 70 of the 493 rows look like this. Fix them, then re-run [`build_xlsform.py`](../kit/build_xlsform.py) and rebuild the domain, or testers will see junk in the Inspector list.
 - [ ] **Accounts.** One test account per tester who has none for Field Maps, sharing the MVP group. Field Maps editing needs a user type that can edit (Contributor or Mobile Worker; **check in 11.5** what the portal licenses allow). Write down the licensing cost per crew member for the team scoring.
-- [ ] **Public survey.** Ask the portal admin whether the survey can be shared with everyone (no sign-in). If not, the no-account tests (task 6) use a test account and the scoring notes that public access wasn't possible.
 - [ ] **Phones.** On each tester's phone (or a loaner): install ArcGIS Field Maps and ArcGIS Survey123, sign in, download the survey in Survey123, and confirm the pop-up link opens Survey123 with the hydrant filled in. Leave the Field Maps offline area **not** downloaded; task 5 covers that.
 - [ ] **Reset the data.** Delete practice inspections so only pilot records are in the table.
 - [ ] **Print** the [task cards](../reference/task-cards.md): one Set A and one Set B packet per tester. Print the Observer sheet from the workbook.
@@ -78,8 +77,6 @@ Read the words in quotes as written. If the tester asks for help, say "What woul
 Hand over the first card packet. For each card, the observer starts the timer when the tester reads the card and stops it when the tester submits or gives up. After each task, ask:
 
 > "On a scale of 1 to 7, how easy was that? 1 is very hard, 7 is very easy."
-
-Survey123 sessions do task 6 after task 5. Field Maps sessions skip task 6.
 
 ### 3. After the first app (5 min)
 
@@ -132,14 +129,14 @@ The Summary sheet shows both apps side by side. Before comparing totals, each ap
 | 95% or more of records tied to the right hydrant | An inspection that isn't under its hydrant is lost to maintenance |
 | The offline task (task 5) synced for every tester | Some hydrants have poor signal |
 
-If both pass, pick the one with the higher combined score (crew results and team scoring weigh equally). If they're within 10% of each other, account access decides: if crews without accounts can't use Field Maps and the portal can't fund accounts for them, choose Survey123; otherwise choose Field Maps for its full offline map and simpler upkeep.
+If both pass, pick the one with the higher combined score (crew results and team scoring weigh equally). If they're within 10% of each other, go with the app most testers picked at wrap-up. If that's split too, choose Field Maps: it's one app, with a full offline map.
 
 ## Known differences to watch
 
 These come from the build, and the pilot should show how much each matters:
 
-- **Accounts.** Field Maps always needs a sign-in. Survey123 can skip it, but only if the portal allows public sharing.
-- **No-account crews lose the map.** Without a sign-in they can't open the Field Maps map, so they open Survey123 directly and type the GIS ID. Those records arrive with no link to the hydrant (empty `HydrantGUID`). Task 6 measures this. If Survey123 wins on accounts, a nightly FME or Python job that matches GIS ID to hydrant would close the gap.
+- **Accounts.** Both apps need a sign-in: the portal doesn't allow anonymous access. Every tester, and later every crew member, needs an account that can edit.
+- **Two apps or one.** Survey123 crews still open the hydrant in Field Maps and jump to the survey, so they use both apps. Field Maps crews stay in one.
 - **Inspector list.** Survey123 filters names by engine company; Field Maps shows one long searchable list.
 - **Issue checklist.** Survey123 uses tap lists; Field Maps uses one switch per issue.
 - **Follow-up flag.** Both set it automatically. Crews can change it in Survey123, not in Field Maps.

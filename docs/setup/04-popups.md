@@ -184,7 +184,7 @@ return t;
 To see every pop-up state before crews add real inspections, load [data/demo_inspections.csv](../kit/data/demo_inspections.csv): 23 made-up inspections on 17 of the 21 sample hydrants. The script links each one to its hydrant by GIS ID, so it works on the layer you already published.
 
 1. In ArcGIS Pro, sign in to the portal as the owner of the source layer.
-2. Copy the **source** layer's service URL (from step 1, ending in `/FeatureServer`). Not a view: crews can't add records there as you, and the public view can't be read.
+2. Copy the **source** layer's service URL (from step 1, ending in `/FeatureServer`). Not the field view: there you can only edit records you created.
 3. Open **Python Command Prompt** and run:
 
     ```

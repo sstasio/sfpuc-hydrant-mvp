@@ -14,14 +14,6 @@
 - [ ] You can fix an inspection you just added, but not one someone else added.
 - [ ] Take the map offline, add an inspection, sync. It shows up in the source.
 
-## Survey123 without signing in (only if you made the public view)
-
-Use a private browser window.
-
-- [ ] The survey opens from its link and submits.
-- [ ] The public view's URL doesn't return any records. Open `.../FeatureServer/1/query?where=1=1&f=json`; it should be empty or refused.
-- [ ] The source and field view URLs ask for a sign-in.
-
 ## Pop-ups and form on a phone, with the demo data
 
 Load the [demo inspections](04-popups.md#load-demo-inspections) first. Save the web map in Map Viewer before each test, then reopen the map in Field Maps (pull down on the map list to refresh), or the phone keeps the old pop-up.
@@ -127,7 +119,7 @@ Field scenarios 2 and 7 cover the basics. This section works through the rest of
 - [ ] The blue "Inspect in Survey123" button shows on every hydrant pop-up.
 - [ ] Tapping it opens a new, empty inspection for that hydrant, not the app's survey list.
 - [ ] Back in Field Maps, open a different hydrant and tap its button. The form shows the new hydrant, with nothing left over from the last one.
-- [ ] On a computer, the button opens the survey in the browser. It asks you to sign in when the survey uses the field view.
+- [ ] On a computer, the button opens the survey in the browser and asks you to sign in.
 
 **Values carried over from the hydrant**
 
@@ -150,12 +142,6 @@ Field scenarios 2 and 7 cover the basics. This section works through the rest of
 - [ ] Close the app halfway through a form and choose to save it. The form waits in Drafts and opens again with your answers in place.
 - [ ] Submitting with a required answer missing (Engine Company, Inspector or Operable) is blocked, and the form jumps to the question.
 - [ ] Two forms sent from the Outbox at once both arrive, each under its own hydrant.
-
-**Without signing in** (only if you made the public view and shared the survey with Everyone)
-
-- [ ] In a private browser window, open the survey's share link with a hydrant's details added (copy them from the button's link). The form opens with no sign-in and the hydrant filled in.
-- [ ] The record arrives in the source with no `created_user`, and the Inspector you picked is saved.
-- [ ] The person who sent it can't see or open any inspections afterwards.
 
 **For the pilot scoring**
 

@@ -121,8 +121,6 @@ def main():
         row = {"PilotID": f"P{pnum}", "Task": exp["Task"], "Set": exp["Set"],
                "App": app_for(pnum, exp["Set"]), "GISID": gisid, "Linked": linked,
                "WrongCount": len(wrong), "WrongFields": "; ".join(wrong), "ObjectID": oid, "Note": ""}
-        if row["Task"] == "T6" and row["App"] != S123:
-            row["Note"] = "Task 6 is Survey123 only; check the app order"
         dup = (pnum, gisid)
         if dup in seen:
             row["Note"] = "Duplicate: tester submitted this hydrant more than once"
@@ -134,8 +132,6 @@ def main():
     for pnum in sorted({p for p, _ in seen}):
         for gisid, exp in key.items():
             app = app_for(pnum, exp["Set"])
-            if exp["Task"] == "T6" and app != S123:
-                continue
             if (pnum, gisid) not in seen:
                 out.append({"PilotID": f"P{pnum}", "Task": exp["Task"], "Set": exp["Set"], "App": app,
                             "GISID": gisid, "Linked": "", "WrongCount": "", "WrongFields": "",
