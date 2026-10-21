@@ -222,7 +222,7 @@ propy "C:\temp\hydrant-mvp\load_demo_inspections.py" --service <source service U
 
 - [ ] Hydrant banner color matches the table above for one hydrant in each state (gray 0353, green 0291, yellow 0383, red 0358, not found 0718).
 - [ ] Banner and title read without zooming, one-handed.
-- [ ] Related inspections list shows newest first, each titled with date and company.
+- [ ] Related inspections list shows newest first, each titled with date and engine company.
 - [ ] Inspection with no problems shows "None" under Issues found.
 - [ ] Photos open from the inspection pop-up.
 - [ ] All of the above also work with the map taken offline.

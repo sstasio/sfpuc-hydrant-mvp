@@ -36,7 +36,7 @@
 
 - **6 to 8 testers** from at least 2 engine companies. Six is enough to see the big problems; eight evens out the app order.
 - Mix them: iPhone and Android, comfortable and less comfortable with apps, and **at least 2 without a portal account**.
-- Each tester gets a pilot ID: P1, P2 and so on. Log it on the Testers sheet with their company, phone and account status.
+- Each tester gets a pilot ID: P1, P2 and so on. Log it on the Testers sheet with their engine company, phone and account status.
 
 ## App order
 

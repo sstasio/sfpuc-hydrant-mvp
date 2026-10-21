@@ -11,7 +11,7 @@ Build these groups. They mirror the Survey123 form so the pilot compares like wi
 | Group | Fields | Input |
 |---|---|---|
 | Hydrant | GIS ID, Location, Latitude, Longitude | Calculated (read-only), see [5b](#5b-calculated-fields) |
-| Crew | Inspection Date, Engine Company, Inspector | Date (default to current date), combo box, **combo box** (searchable; can't filter by company, see [5e](#5e-check-in-115)) |
+| Crew | Inspection Date, Engine Company, Inspector | Date (default to current date), combo box, **combo box** (searchable; can't filter by engine company, see [5e](#5e-check-in-115)) |
 | Found at Location | Found at Location | Switch |
 | Condition (visible when Found = Yes) | Operable, Corrosion, Gauge, Spindle, Low Pressure, Caps Missing, Shutoff Valve, Obstructed | Radio buttons, switch, number, number, calculated, number, combo box, switch |
 | Markings missing (visible when Found = Yes) | 4 Yes/No fields | Switches |
