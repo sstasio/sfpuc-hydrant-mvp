@@ -20,7 +20,7 @@ Both apps write to the same inspections table, so every inspection lands in one 
 - **Keep every field in both views.** Privacy comes from the view settings, not from hiding fields. See [fields in each view](setup/02-views.md#fields-in-each-view).
 - **Public view: Add greyed out?** Turn on Add in the source item's Settings first. **Public data collection** goes on for the public view only, with a five-point safety checklist. See [step 2c](setup/02-views.md#2c-create-the-public-view-optional).
 - **New pop-up spec** with status banners, short labels, an "Issues found" list and [phone mockups](https://claude.ai/artifact/4VeRmAyeFMtAFJMPuF19c1). See [step 4](setup/04-popups.md).
-- **The Survey123 link** is an attribute expression named `s123` plus a Text element whose link is `{expression/s123}`. See [step 6d](setup/06-survey123.md#6d-add-the-inspect-in-survey123-link).
+- **The Survey123 link** is an Arcade element that returns an "Inspect in Survey123" button. See [step 6d](setup/06-survey123.md#6d-add-the-inspect-in-survey123-button).
 - **Running the build script:** in a Pro notebook use `%run`; in the Python window use the `runpy` line; `propy` only works in the Python Command Prompt. See [step 1](setup/01-build-data.md).
 - **All the separate files are now this one guide.** See [where the old files went](#where-the-old-files-went).
 
@@ -72,7 +72,7 @@ flowchart LR
 | `BUILD-GUIDE.md` | Steps [1](setup/01-build-data.md), [5](setup/05-field-maps-form.md), [6](setup/06-survey123.md) and [7](setup/07-test.md) |
 | `VIEWS-AND-WEBMAP.md` | Steps [2](setup/02-views.md), [3](setup/03-web-map.md), [6a](setup/06-survey123.md#6a-pick-which-view-the-survey-writes-to) and [7](setup/07-test.md) |
 | `FIELD-MAPS-POPUPS.md` | Step [4](setup/04-popups.md) |
-| `field-maps-arcade.md` | Form expressions in step [5](setup/05-field-maps-form.md#5b-calculated-fields); Survey123 link in step [6d](setup/06-survey123.md#6d-add-the-inspect-in-survey123-link) |
+| `field-maps-arcade.md` | Form expressions in step [5](setup/05-field-maps-form.md#5b-calculated-fields); Survey123 button in step [6d](setup/06-survey123.md#6d-add-the-inspect-in-survey123-button) |
 | `pilot/PILOT-SCRIPT.md` | Step [8](setup/08-pilot.md) and the [task cards](reference/task-cards.md) |
 | `hydrant-inspection-schema-draft.md` | [Schema and field reasons](reference/schema.md) |
 | `DOWNLOADS.md` | [Downloads](downloads.md) |

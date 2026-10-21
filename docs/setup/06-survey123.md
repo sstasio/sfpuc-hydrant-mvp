@@ -48,13 +48,13 @@ Question names are all lower case, because the portal lower-cased the field name
 
 Trade-off to note for the pilot scoring: records sent through the public view have no SFPUC user in `created_user`, so nobody can fix them later from the app. The Inspector pick list still records who did the inspection, and the GIS team can correct records in the source.
 
-## 6d. Add the "Inspect in Survey123" link
+## 6d. Add the "Inspect in Survey123" button
 
 This lets crews open Survey123 from a hydrant in Field Maps with the hydrant already filled in.
 
-1. In Map Viewer, open the **Hydrants** pop-up, **Attribute expressions > Add**, name it `s123`, and paste the code below.
-2. Replace `SURVEY_ITEM_ID` with the survey's item ID.
-3. Add a **Text** element (element 5 in [the hydrant pop-up](04-popups.md#hydrant-pop-up)). Type `Inspect in Survey123`, select it, click the link button, and enter `{expression/s123}` as the URL.
+1. In Map Viewer, open the **Hydrants** pop-up and add an **Arcade** element (element 5 in [the hydrant pop-up](04-popups.md#hydrant-pop-up)).
+2. Paste the code below and replace `SURVEY_ITEM_ID` with the survey's item ID.
+3. Save the map, then refresh it in Field Maps.
 
 ```arcade
 var g = Geometry($feature);
@@ -75,14 +75,18 @@ var params = {
   "field:lat": Round(lat, 6),
   "field:lon": Round(lon, 6)
 };
-// Opens the Survey123 field app. For a browser instead, use
-// "https://survey123.arcgis.com/share/SURVEY_ITEM_ID?" + UrlEncode(params)
-return "arcgis-survey123://?" + UrlEncode(params);
+// Opens the Survey123 field app, or its web page if the app isn't installed.
+// Apostrophes in addresses (33' W KEARNY) are encoded so they don't cut the link short.
+var url = "https://survey123.arcgis.app/?" + Replace(UrlEncode(params), "'", "%27");
+return {
+  type: "text",
+  text: '<a href="' + url + '" style="display:block;padding:12px;background-color:#0074B8;color:#FFFFFF;border-radius:6px;text-align:center;font-weight:bold;text-decoration:none;">Inspect in Survey123</a>'
+};
 ```
 
 The link points at the survey, not a layer, so it works with either view. The `field:` names must match the form's question names exactly, in lower case, or the form opens blank.
 
-**Why a Text element and not an Arcade element?** The Arcade only builds the web address; it lives under **Attribute expressions**, and `{expression/s123}` is the placeholder that drops that address into the link. An Arcade element could return an HTML `<a href>` link instead, but the Text element is simpler and easier to restyle.
+**Why an Arcade element and not a Text element link?** A Text element whose link is `{expression/...}` silently disappeared in Field Maps during testing. The Arcade element builds the whole link itself, and it shows as a full-width button that's easy to hit with a thumb.
 
 ## Next
 
