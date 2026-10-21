@@ -29,10 +29,10 @@ Load the [demo inspections](04-popups.md#load-demo-inspections) first. Save the 
 
 **Inspection pop-up.** Tap an inspection under the hydrant:
 
-- [ ] **0358:** the title shows date and company, the pressure line reads *38 psi measured · 50 psi stamped · LOW*, and Issues found lists Low pressure.
+- [ ] **0358:** the title shows date and engine company, the pressure line reads *38 psi measured · 50 psi stamped · LOW*, and Issues found lists Low pressure.
 - [ ] **3402:** Issues found shows "Operable: No" and "Stripped spindle".
 - [ ] **0291:** Issues found says "None".
-- [ ] Related inspections are listed newest first, each titled with date and company.
+- [ ] Related inspections are listed newest first, each titled with date and engine company.
 - [ ] Photos open from the inspection pop-up (add one by hand; demo records have none).
 
 **New inspection from the form.** Open 0291 and add an inspection:
@@ -80,7 +80,7 @@ Run these as a crew member would, with the crew test account, on a phone, standi
 **4. Inspector not on the list.**
 
 - [ ] Pick Engine Company E01. The Inspector list shows only E01 names plus Other.
-- [ ] Change the company to another engine. Check that the inspector you picked is cleared or flagged, not kept silently under the wrong company.
+- [ ] Change to another engine company. Check that the inspector you picked is cleared or flagged, not kept silently under the wrong engine company.
 - [ ] Pick Other, put the name in Remarks, and submit. Other is saved in the record.
 
 **5. Fixing a mistake (Field Maps).**
@@ -89,10 +89,10 @@ Run these as a crew member would, with the crew test account, on a phone, standi
 - [ ] Open a demo inspection (made by your own account, so it's someone else's to the crew). There's no edit button, or the edit is refused.
 - [ ] There's no way to delete any inspection, including your own.
 
-**6. Two companies at one hydrant.** Hydrant **3469** again, a day later.
+**6. Two engine companies at one hydrant.** Hydrant **3469** again, a day later.
 
 - [ ] Add a second inspection with a different engine company, an inspection date one day after scenario 1, and Corrosion Yes. Both inspections show under 3469, newest first.
-- [ ] The banner follows the newest one: it shows the new date and company and "2 inspections".
+- [ ] The banner follows the newest one: it shows the new date and engine company and "2 inspections".
 
 **7. No signal (Survey123 only).** The Field Maps offline test waits on the basemap; this one doesn't.
 
@@ -130,7 +130,7 @@ Field scenarios 2 and 7 cover the basics. This section works through the rest of
 **The form itself**
 
 - [ ] Inspection Date defaults to now and can be changed.
-- [ ] Typing `E1` in Engine Company narrows the list to E1 companies.
+- [ ] Typing `E1` in Engine Company narrows the list to the engine companies starting with E1.
 - [ ] Low Pressure can't be typed into. It only changes from the gauge and spindle values.
 - [ ] Ticking "Serial number missing" and "Leak" sets those two flags to Yes on the record, and the other eight to No.
 - [ ] Clearing every marking and issue (and with no other problems) sets Needs Follow-up back to No.
@@ -161,4 +161,4 @@ After the scenarios, open the **source** layer's inspections table in Map Viewer
 
 ## Next
 
-[8. Run the staff pilot](08-pilot.md). A supervisor dashboard (low-pressure list, follow-up count, inspections by company) can come after, built on the same table.
+[8. Run the staff pilot](08-pilot.md). A supervisor dashboard (low-pressure list, follow-up count, inspections by engine company) can come after, built on the same table.

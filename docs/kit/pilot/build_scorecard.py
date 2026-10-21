@@ -102,7 +102,7 @@ def build(path, n_testers):
         ("", BASE),
         ("Yellow cells are for typing. Grey cells are filled in for you or calculated.", BOLD),
         ("", BASE),
-        ("Testers: one row per tester. Fill in company, phone and account before their session.", BASE),
+        ("Testers: one row per tester. Fill in engine company, phone and account before their session.", BASE),
         ("Tasks: the observer logs time, result and ease for every task, in the order the rows are listed.", BASE),
         ("After-app: the four questions after each app (1 strongly disagree, 5 strongly agree).", BASE),
         ("Wrap-up: which app the tester would pick, and why.", BASE),

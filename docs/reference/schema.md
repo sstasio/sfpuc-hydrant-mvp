@@ -92,7 +92,7 @@ The field list as first drafted. The additions below were all built, as separate
 | HydrantGUID | Hydrant | GUID | Required | Set by the relationship, not typed |
 | GISID | GIS ID | Text (20) | Required, prefilled from hydrant | Report uses 4-digit serials (1,582 of 1,882), with odd ones like "?049" and "B0039" |
 | InspDate | Inspection Date | Date | Required, default now | |
-| EngineCo | Engine Company | Text (5) | Domain E01 to E51 | 44 companies in the report |
+| EngineCo | Engine Company | Text (5) | Domain E01 to E51 | 44 engine companies in the report |
 | Inspector | Inspector | Text (50) | See note below | |
 | Location | Address/Location | Text (150) | Prefilled from hydrant | Kept for reference; the map point is the real location |
 | Lat, Lon | Latitude, Longitude | Double | Calculated from geometry or device GPS | Read-only |
@@ -120,5 +120,5 @@ Hydrant layer attributes to hold (or verify) so crews don't retype them: GISID, 
 
 ## Inspector without an account
 
-- With 458 names in one year, a single dropdown is too long. Use Engine Company first, then a name list filtered to that company, plus an "Other" free-text option.
+- With 458 names in one year, a single dropdown is too long. Use Engine Company first, then a name list filtered to that engine company, plus an "Other" free-text option.
 - **Accounts are a key comparison point.** Field Maps needs a signed-in ArcGIS account to edit. SFPUC's portal doesn't allow anonymous access, so Survey123 needs one too. Survey123 handles the filtered name list natively (`choice_filter`). In Field Maps the closest option is contingent values, which need checking in the 11.5 Field Maps Designer.
