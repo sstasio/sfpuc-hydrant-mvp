@@ -29,7 +29,7 @@ Load the [demo inspections](04-popups.md#load-demo-inspections) first. Save the 
 
 **Inspection pop-up.** Tap an inspection under the hydrant:
 
-- [ ] **0358:** the title shows date and engine company, the pressure line reads *38 psi measured · 50 psi stamped · LOW*, and Issues found lists Low pressure.
+- [ ] **0358**, newest inspection (Sep 30, 2026): the title shows date and engine company, the pressure line reads *38 psi measured · 50 psi stamped · LOW*, and Issues found lists Low pressure. The older one (Sep 15, 2025) reads *52 psi measured · 50 psi stamped* with no issues.
 - [ ] **3402:** Issues found shows "Operable: No" and "Stripped spindle".
 - [ ] **0291:** Issues found says "None".
 - [ ] Related inspections are listed newest first, each titled with date and engine company.
