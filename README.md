@@ -2,7 +2,7 @@
 
 Step-by-step setup and reference for the SFPUC hydrant inspection MVP: one hosted layer, two apps (ArcGIS Field Maps and ArcGIS Survey123), a staff pilot to pick between them. Target is ArcGIS Enterprise 11.5.
 
-**[Start here: docs/index.md](docs/index.md)**
+**[Start here: docs/index.md](docs/index.md)** · **[MVP demo prep, Oct 22](docs/demo-2026-10-22.md)**
 
 ## Setup, in order
 
@@ -19,6 +19,7 @@ Reference: [schema](docs/reference/schema.md) · [Field Maps vs Survey123](docs/
 
 ## Latest changes
 
+- **2026-10-21:** Prep for the October 22 MVP demo: [docs/demo-2026-10-22.md](docs/demo-2026-10-22.md).
 - **2026-10-20:** Phone test checklist using the demo inspections: [Test before the pilot](docs/setup/07-test.md#pop-ups-and-form-on-a-phone-with-the-demo-data).
 - **2026-10-20:** Pop-up and form Arcade now use the portal's lower-case field names, fixing "Some expressions failed to evaluate" in Field Maps: [Troubleshooting](docs/reference/troubleshooting.md#pop-up-says-some-expressions-failed-to-evaluate).
 - **2026-10-20:** Fix for Field Maps' "Features with true curves cannot currently be edited" warning: [Troubleshooting](docs/reference/troubleshooting.md#features-with-true-curves-cannot-currently-be-edited), plus a publishing tip in [step 1](docs/setup/01-build-data.md).

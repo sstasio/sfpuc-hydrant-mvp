@@ -6,9 +6,13 @@ Both apps write to the same inspections table, so every inspection lands in one 
 
 - **Target:** ArcGIS Enterprise 11.5, [gis.sfpuc.org/portal](https://gis.sfpuc.org/portal)
 - **Scope:** low-pressure hydrants only for now (no AWSS hydrants or cisterns yet)
-- **Status:** hydrants and inspections are published (step 1). Views are being set up (step 2), then the web map and pop-ups (steps 3 and 4).
+- **Status:** steps 1 to 6 are done. Field Maps and Survey123 are set up and tested on a phone, except Field Maps offline, which waits on the basemap. The MVP demo is on October 22: see the [demo prep page](demo-2026-10-22.md).
 
 ## Latest changes
+
+**2026-10-21**
+
+- **MVP demo prep** for October 22: run-of-show, live phone demo script with exact values to enter, pre-meeting checklist, talking points, decisions to ask for, and cleanup. See [MVP demo, Oct 22](demo-2026-10-22.md).
 
 **2026-10-20**
 
@@ -67,7 +71,7 @@ flowchart LR
 | Old file | Now in |
 |---|---|
 | `BUILD-GUIDE.md` | Steps [1](setup/01-build-data.md), [5](setup/05-field-maps-form.md), [6](setup/06-survey123.md) and [7](setup/07-test.md) |
-| `VIEWS-AND-WEBMAP.md` | Steps [2](setup/02-views.md), [3](setup/03-web-map.md), [6a](setup/06-survey123.md#6a-pick-which-view-the-survey-writes-to) and [7](setup/07-test.md) |
+| `VIEWS-AND-WEBMAP.md` | Steps [2](setup/02-views.md), [3](setup/03-web-map.md), [6a](setup/06-survey123.md#6a-the-survey-writes-to-the-field-view) and [7](setup/07-test.md) |
 | `FIELD-MAPS-POPUPS.md` | Step [4](setup/04-popups.md) |
 | `field-maps-arcade.md` | Form expressions in step [5](setup/05-field-maps-form.md#5b-calculated-fields); Survey123 button in step [6d](setup/06-survey123.md#6d-add-the-inspect-in-survey123-button) |
 | `pilot/PILOT-SCRIPT.md` | Step [8](setup/08-pilot.md) and the [task cards](reference/task-cards.md) |
