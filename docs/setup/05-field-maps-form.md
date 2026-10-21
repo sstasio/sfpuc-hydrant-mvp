@@ -16,18 +16,19 @@ The form is saved in the web map, so build it on `Hydrant Inspections MVP`, the 
 4. In the list of layers and tables, pick the **HydrantInspections** table, not the Hydrants layer.
 5. If it asks how to start, choose to start from the pop-up or from a new, blank form. Both give the same result here, because you'll set every field below.
 
-The builder has three parts:
+In the builder:
 
-- **Left:** the elements you can add (Group, and one entry per input type such as Switch, Combo box, Number and Date), plus the table's **fields**.
-- **Middle:** the form as crews will see it, top to bottom.
-- **Right:** the settings for whatever you select in the middle.
+- **The form** in the middle shows what crews will see, top to bottom.
+- **Fields** lists the table's fields, ready to drag onto the form.
+- **Form elements**, on the right side of the screen, holds **Group** and the other elements you can add.
+- **Settings** for whatever you select on the form open when you select it.
 
 ### Add the fields first
 
 Field Maps won't let you add groups to an empty form, so put the fields on the form first and group them after.
 
-1. Drag each field in the table below from the field list into the middle, top to bottom in the order shown.
-2. Select each field and set it up on the right:
+1. Drag each field in the table below from the **Fields** list onto the form, top to bottom in the order shown.
+2. Select each field and set it up in its settings:
     - **Display name:** the label crews see (the Label column).
     - **Input type:** what crews tap. For a switch, set the **On** value to `Yes` and **Off** to `No`.
     - **Required:** on for the fields marked Yes.
@@ -68,8 +69,8 @@ Field Maps won't let you add groups to an empty form, so put the fields on the f
 
 A group is a heading that holds fields and can collapse. With the fields on the form:
 
-1. Drag **Group** from the left into the middle, just above the first field it should hold.
-2. With the group selected, set its **Label** on the right, and set **Initial state** to **Expanded**.
+1. Drag **Group** from **Form elements** (right side of the screen) onto the form, just above the first field it should hold.
+2. With the group selected, set its **Label** in its settings, and set **Initial state** to **Expanded**.
 3. Drag that group's fields (the Group column in the table above) into it.
 4. Repeat until you have the seven groups below, in this order. Drag a group up or down to reorder it, and its fields move with it.
 
