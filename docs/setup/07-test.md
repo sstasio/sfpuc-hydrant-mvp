@@ -39,7 +39,7 @@ Load the [demo inspections](04-popups.md#load-demo-inspections) first. Save the 
 
 - [ ] GIS ID, Location, Latitude and Longitude fill in by themselves. If one stays blank, check the layer name in its expression ([step 5b](05-field-maps-form.md#5b-calculated-fields)).
 - [ ] Switching Found at Location to No hides the Condition, Markings and Other issues groups.
-- [ ] A gauge of 40 (stamped is 62) sets Low Pressure and Needs Follow-up to Yes.
+- [ ] Entering Spindle 62 and Gauge 40 sets Low Pressure and Needs Follow-up to Yes. Low pressure needs both numbers, since the crew types in the stamped spindle pressure.
 - [ ] After you submit, 0291's banner turns red and the new inspection is at the top of its list.
 - [ ] Start the test record's Remarks with `DEMO.` so `--remove` clears it, or delete it in the source.
 
