@@ -12,7 +12,7 @@ Two ways around it:
 |---|---|---|
 | What it is | An offline-ready copy of an Esri basemap from ArcGIS Online, added to the portal as an item | A `.vtpk` (vector) or `.tpkx` (raster) file of San Francisco you make in ArcGIS Pro |
 | Looks like | Esri's street basemap, same as crews are used to | Whatever you put in it (streets, parcels, buildings, city labels) |
-| Needs | An ArcGIS Online **organizational** account (SFPUC already uses AGOL) | ArcGIS Pro 3.5 and city base layers |
+| Needs | An ArcGIS Online **organizational** account (SFPUC already uses AGOL) | ArcGIS Pro 3.7.3 and city base layers |
 | How it reaches the phone | Downloaded with each offline area | Uploaded to the portal once; each phone downloads it once, then only the hydrant data downloads |
 | Upkeep | None, Esri keeps it current | Rebuild when the city layers change |
 | Best for | A small pilot area, set up in under an hour | Many crews, the whole city, or if AGOL credentials can't be stored on the portal |
@@ -53,7 +53,7 @@ Then build the offline area in [step 5d](../setup/05-field-maps-form.md#5d-offli
 
 ## B. Your own tile package (citywide)
 
-1. In **ArcGIS Pro 3.5**, make a map with the city base layers crews need: street centerlines with names, block or parcel lines, building footprints, and water bodies. Keep it plain and light gray so hydrants stand out. Set the map to Web Mercator (WKID 3857) so it lines up with Field Maps' tiling.
+1. In **ArcGIS Pro 3.7.3**, make a map with the city base layers crews need: street centerlines with names, block or parcel lines, building footprints, and water bodies. Keep it plain and light gray so hydrants stand out. Set the map to Web Mercator (WKID 3857) so it lines up with Field Maps' tiling.
 2. Run **Create Vector Tile Package** (`.vtpk`). Extent: San Francisco. Leave the scale range at the defaults; vector tiles stay small even at street level. Use **Create Map Tile Package** (`.tpkx`) only if you need imagery.
 3. Share the package to the portal (**Share > Share As > Share Vector Tile Package**, or upload the file). Share it with the MVP test group.
 4. **Field Maps Designer > Offline > Offline basemap**: choose to use a basemap on the device and pick the package.
