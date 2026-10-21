@@ -15,7 +15,7 @@ Everything you load into ArcGIS, in build order. Target is ArcGIS Enterprise 11.
 | [build_hydrant_gdb.py](kit/build_hydrant_gdb.py) | Builds `HydrantInspections.gdb` (hydrants, inspection table, relationship, domains). See [step 1](setup/01-build-data.md) for how to run it |
 | [data/sample_hydrants.csv](kit/data/sample_hydrants.csv) | 21 sample E01 hydrants. Coordinates are estimated, not surveyed |
 | [data/demo_inspections.csv](kit/data/demo_inspections.csv) | 23 made-up inspections covering every pop-up state. Load with the script below ([step 4](setup/04-popups.md#load-demo-inspections)) |
-| [load_demo_inspections.py](kit/load_demo_inspections.py) | Adds the demo inspections to the published layer (or the geodatabase), linked by GIS ID. `--remove` deletes them |
+| [load_demo_inspections.py](kit/load_demo_inspections.py) | Adds the demo inspections to the published layer (or the geodatabase), linked by GIS ID. `--remove` deletes them after the demo; `--remove-tests` deletes only your `TEST.` records |
 | [data/inspectors.csv](kit/data/inspectors.csv) | Engine companies and inspector names for the Inspector pick lists. Needs cleanup before the pilot ([step 8](setup/08-pilot.md#before-the-pilot-pilot-lead-and-portal-admin)) |
 
 ## Step 6: Survey123

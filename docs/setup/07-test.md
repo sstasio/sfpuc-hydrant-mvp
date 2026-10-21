@@ -41,12 +41,12 @@ Load the [demo inspections](04-popups.md#load-demo-inspections) first. Save the 
 - [ ] Switching Found at Location to No hides the Condition, Markings and Other issues groups.
 - [ ] Entering Spindle 62 and Gauge 40 sets Low Pressure and Needs Follow-up to Yes. Low pressure needs both numbers, since the crew types in the stamped spindle pressure.
 - [ ] After you submit, 0291's banner turns red and the new inspection is at the top of its list.
-- [ ] Before you submit, you typed `DEMO.` at the very start of Remarks, so the record is cleaned up with the demo data later ([Clean up test records](#clean-up-test-records)).
+- [ ] Before you submit, you typed `TEST.` at the very start of Remarks, so the record can be deleted later without touching the demo data ([Clean up test records](#clean-up-test-records)).
 
 **Before the pilot:**
 
 - [ ] All of the above also work with the map taken offline.
-- [ ] The demo inspections and every test record are deleted ([Clean up test records](#clean-up-test-records)).
+- [ ] Every test record is deleted (`--remove-tests`). Delete the demo inspections (`--remove`) only after the MVP demo ([Clean up test records](#clean-up-test-records)).
 
 ## Tap-test
 
@@ -56,7 +56,7 @@ Load the [demo inspections](04-popups.md#load-demo-inspections) first. Save the 
 
 ## Field scenarios
 
-Run these as a crew member would, with the crew test account, on a phone, standing at a real or pretend hydrant. Each one uses a hydrant the demo data leaves alone, so the results are easy to spot. In every inspection you add, type `DEMO.` at the very start of Remarks (for example `DEMO. Scenario 1`), so it's easy to delete afterwards ([Clean up test records](#clean-up-test-records)).
+Run these as a crew member would, with the crew test account, on a phone, standing at a real or pretend hydrant. Each one uses a hydrant the demo data leaves alone, so the results are easy to spot. In every inspection you add, type `TEST.` at the very start of Remarks (for example `TEST. Scenario 1`), so it's easy to delete afterwards ([Clean up test records](#clean-up-test-records)).
 
 **1. Routine inspection, nothing wrong (Field Maps).** Hydrant **3469**, never inspected.
 
@@ -112,7 +112,7 @@ Run these as a crew member would, with the crew test account, on a phone, standi
 
 ## Survey123 in depth
 
-Field scenarios 2 and 7 cover the basics. This section works through the rest of the survey. Use a phone with the Survey123 app installed and signed in with the crew test account, and the survey downloaded once in the app. In every survey you send, type `DEMO.` at the very start of Remarks, as in the field scenarios.
+Field scenarios 2 and 7 cover the basics. This section works through the rest of the survey. Use a phone with the Survey123 app installed and signed in with the crew test account, and the survey downloaded once in the app. In every survey you send, type `TEST.` at the very start of Remarks, as in the field scenarios.
 
 **Opening the survey from the button**
 
@@ -161,33 +161,53 @@ After the scenarios, open the **source** layer's inspections table in Map Viewer
 
 ## Clean up test records
 
-Every inspection you add while testing is saved as a real record, so it has to be deleted before the pilot. Typing `DEMO.` at the start of Remarks marks a record as a test. The demo inspections from [step 4](04-popups.md#load-demo-inspections) already start that way, so one command deletes them all together.
+There are two kinds of made-up records in the layer, and they're cleaned up at different times:
 
-**While you test:** in every inspection or survey you add, type `DEMO.` at the very start of the Remarks box: capital letters, then a period, then anything you like. For example: `DEMO. Scenario 3, leak`. A record that starts any other way, even `Demo` or ` DEMO.` with a space in front, won't be deleted by the command.
+| Records | Remarks start with | Keep them? | Delete with |
+|---|---|---|---|
+| The 23 demo inspections from [step 4](04-popups.md#load-demo-inspections) | `DEMO.` | **Yes, through the MVP demo.** They're what shows every banner color. | `--remove`, after the demo and before real inspections start |
+| Inspections you add while testing | `TEST.` | No | `--remove-tests`, whenever you finish a round of testing |
 
-**When testing is done, delete them with the script.** This is the same script that loaded the demo inspections, run with `--remove` at the end. It deletes every inspection whose Remarks starts with `DEMO.` and nothing else.
+**While you test:** in every inspection or survey you add, type `TEST.` at the very start of the Remarks box: capital letters, then a period, then anything you like. For example: `TEST. Scenario 3, leak`. A record that starts any other way, even `Test` or ` TEST.` with a space in front, won't be deleted by the command. Never type `DEMO.` on a test record.
+
+### Delete your test records (keeps the demo data)
+
+Run this after each round of testing. It deletes every inspection whose Remarks starts with `TEST.` and nothing else, so the demo inspections stay.
 
 1. In ArcGIS Pro, sign in to the portal as the owner of the source layer.
 2. Copy the **source** layer's service URL, ending in `/FeatureServer`, as in [step 4](04-popups.md#load-demo-inspections). Don't use the field view's URL.
 3. Open **Python Command Prompt** (Windows Start > ArcGIS > Python Command Prompt) and run this, with your URL in place of `<source service URL>`:
 
     ```
-    propy "C:\temp\hydrant-mvp\load_demo_inspections.py" --service <source service URL> --remove
+    propy "C:\temp\hydrant-mvp\load_demo_inspections.py" --service <source service URL> --remove-tests
     ```
 
-4. It prints `Removed N demo inspections`, where N is the demo records (23) plus the test records you added.
+4. It prints `Removed N test inspections`, where N is how many you added.
 
-If it says it can't open the table, run the same thing from the Python window inside Pro, as in [step 4](04-popups.md#load-demo-inspections), with `"--remove"` added to the end of the list.
+If it says it can't open the table, run the same thing from the Python window inside Pro, as in [step 4](04-popups.md#load-demo-inspections), with `"--remove-tests"` added to the end of the list.
 
-**A test record that doesn't start with `DEMO.`** has to be deleted by hand:
+- [ ] The script printed `Removed` with the number of test records you expected.
+- [ ] Hydrants you tested on are back to how they looked before. For example 3469 is gray again, and 0291 is green with its two demo inspections.
+- [ ] The demo hydrants still show the colors in the [step 4 table](04-popups.md#load-demo-inspections) (for example 0358 red, 0383 yellow).
+
+### Delete the demo data (after the MVP demo)
+
+Only once the demo is over and before crews enter real inspections, run the same command with `--remove` instead of `--remove-tests`:
+
+```
+propy "C:\temp\hydrant-mvp\load_demo_inspections.py" --service <source service URL> --remove
+```
+
+It prints `Removed 23 demo inspections`, and every hydrant goes back to **Not inspected yet** (gray).
+
+### A record the commands miss
+
+A test record that doesn't start with `TEST.` exactly has to be deleted by hand. This includes any you labeled `DEMO.` before this page changed. The alternative is to fix its Remarks to start with `TEST.` and run `--remove-tests` again.
 
 1. In ArcGIS Pro, signed in as the owner, add the **source** layer (Map tab > Add Data > Data From Path, paste the source service URL).
 2. Right-click the **HydrantInspections** table in the Contents pane and choose **Open**.
-3. Find the record by its date, hydrant or Remarks, and click the gray box at the left of its row to select it.
+3. Find the record by its date, hydrant or Remarks, and click the gray box at the left of its row to select it. Demo records have dates moved to the day they were loaded and Remarks from the demo file, so a record you made today on a hydrant you tested is yours.
 4. Right-click the selected row and choose **Delete**. If the **Save** button on the Edit tab lights up, click it to send the change to the portal.
-
-- [ ] The script printed `Removed` with the number you expected.
-- [ ] In the map, every hydrant now shows **Not inspected yet** (gray). One that doesn't still has a test record: delete it by hand as above.
 
 ## Next
 
