@@ -212,7 +212,7 @@ To see every pop-up state before crews add real inspections, load [data/demo_ins
 
 The dates in the CSV are moved forward to the day you load it, so the states above hold whenever you run it. The demo records have no photos; add one by hand to test attachments.
 
-**Before the pilot,** remove them. Every demo record's Remarks starts with `DEMO.`, and this deletes only those:
+**Keep them through the MVP demo.** Once the demo is over and before crews enter real inspections, remove them. Every demo record's Remarks starts with `DEMO.`, and this deletes only those. To delete just your own test records and keep these, see [Clean up test records](07-test.md#clean-up-test-records).
 
 ```
 propy "C:\temp\hydrant-mvp\load_demo_inspections.py" --service <source service URL> --remove

@@ -9,8 +9,11 @@ The dates in the CSV were written as of AS_OF and are moved forward by the days
 since then, so "inspected 10 days ago" stays 10 days ago whenever you load it.
 Add --keep-dates to load them as written.
 
-Every demo record's Remarks starts with "DEMO." Remove them all before the pilot
-with --remove.
+Every demo record's Remarks starts with "DEMO." Keep them through the MVP demo, then
+remove them all with --remove before real inspections start.
+
+Records you add while testing should start Remarks with "TEST." instead. --remove-tests
+deletes only those and leaves the demo inspections in place.
 
 Run it in ArcGIS Pro's Python, the same three ways as build_hydrant_gdb.py. Point it
 at the published source layer (not a view), signed in to the portal as its owner:
@@ -55,8 +58,8 @@ def globalid_name(table):
     return next(f.name for f in arcpy.ListFields(table) if f.type == "GlobalID")
 
 
-def demo_where(table):
-    return f"{actual_names(table)['remarks']} LIKE 'DEMO.%'"
+def demo_where(table, prefix="DEMO."):
+    return f"{actual_names(table)['remarks']} LIKE '{prefix}%'"
 
 
 def targets(args):
@@ -66,15 +69,15 @@ def targets(args):
     return os.path.join(args.gdb, HYDRANTS), os.path.join(args.gdb, INSPECTIONS)
 
 
-def remove(inspections):
+def remove(inspections, prefix="DEMO.", label="demo"):
     import arcpy
 
     count = 0
-    with arcpy.da.UpdateCursor(inspections, ["OID@"], demo_where(inspections)) as cur:
+    with arcpy.da.UpdateCursor(inspections, ["OID@"], demo_where(inspections, prefix)) as cur:
         for _ in cur:
             cur.deleteRow()
             count += 1
-    print(f"Removed {count} demo inspections")
+    print(f"Removed {count} {label} inspections")
 
 
 def load(hydrants, inspections, csv_path, keep_dates=False):
@@ -128,10 +131,15 @@ if __name__ == "__main__":
     where.add_argument("--gdb", help="Path to HydrantInspections.gdb")
     p.add_argument("--csv", default=DEMO_CSV, help="Demo inspections CSV (default: data/demo_inspections.csv)")
     p.add_argument("--keep-dates", action="store_true", help="Load dates as written instead of moving them to today")
-    p.add_argument("--remove", action="store_true", help="Delete every demo inspection (Remarks starting DEMO.)")
+    action = p.add_mutually_exclusive_group()
+    action.add_argument("--remove", action="store_true", help="Delete every demo inspection (Remarks starting DEMO.)")
+    action.add_argument("--remove-tests", action="store_true",
+                        help="Delete only your test inspections (Remarks starting TEST.) and keep the demo ones")
     args, _ = p.parse_known_args()
     hydrants, inspections = targets(args)
     if args.remove:
         remove(inspections)
+    elif args.remove_tests:
+        remove(inspections, "TEST.", "test")
     else:
         load(hydrants, inspections, args.csv, args.keep_dates)
