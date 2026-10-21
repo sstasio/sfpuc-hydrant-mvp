@@ -37,7 +37,7 @@ Load the [demo inspections](04-popups.md#load-demo-inspections) first. Save the 
 
 **New inspection from the form.** Open 0291 and add an inspection:
 
-- [ ] GIS ID, Location, Latitude and Longitude fill in by themselves. If one stays blank, check the layer name in its expression ([step 5b](05-field-maps-form.md#5b-calculated-fields)).
+- [ ] On the new inspection form, the Hydrant group at the top already shows GIS ID, Location, Latitude and Longitude before you enter anything. If one stays blank, check the layer name in its expression ([step 5b](05-field-maps-form.md#5b-calculated-fields)).
 - [ ] Switching Found at Location to No hides the Condition, Markings and Other issues groups.
 - [ ] Entering Spindle 62 and Gauge 40 sets Low Pressure and Needs Follow-up to Yes. Low pressure needs both numbers, since the crew types in the stamped spindle pressure.
 - [ ] After you submit, 0291's banner turns red and the new inspection is at the top of its list.
