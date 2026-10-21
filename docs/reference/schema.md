@@ -121,4 +121,4 @@ Hydrant layer attributes to hold (or verify) so crews don't retype them: GISID, 
 ## Inspector without an account
 
 - With 458 names in one year, a single dropdown is too long. Use Engine Company first, then a name list filtered to that company, plus an "Other" free-text option.
-- **Accounts are a key comparison point.** Field Maps needs a signed-in ArcGIS account to edit. Survey123 can run as a public survey on Enterprise if the portal allows anonymous access, so crews without accounts can submit. Survey123 handles the filtered name list natively (`choice_filter`). In Field Maps the closest option is contingent values, which need checking in the 11.5 Field Maps Designer.
+- **Accounts are a key comparison point.** Field Maps needs a signed-in ArcGIS account to edit. SFPUC's portal doesn't allow anonymous access, so Survey123 needs one too. Survey123 handles the filtered name list natively (`choice_filter`). In Field Maps the closest option is contingent values, which need checking in the 11.5 Field Maps Designer.

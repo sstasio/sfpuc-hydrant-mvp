@@ -4,7 +4,7 @@ Both apps write to the same `HydrantInspections` table. This is how the two form
 
 | | Survey123 | Field Maps |
 |---|---|---|
-| Account needed | Optional (public survey) | Yes |
+| Account needed | Yes | Yes |
 | Inspector list | Filtered by engine company | One searchable list |
 | Issue checklist | One tap-list per section, saved as separate fields | One switch per issue |
 | Needs Follow-up | Auto-set, crew can override | Auto-set, read-only |
@@ -14,6 +14,6 @@ Both apps write to the same `HydrantInspections` table. This is how the two form
 
 ## Things the pilot should show
 
-- **Accounts.** Field Maps always needs a sign-in. Survey123 can skip it, but only if the portal allows public sharing.
-- **No-account crews lose the map.** Without a sign-in they can't open the Field Maps map, so they open Survey123 directly and type the GIS ID. Those records arrive with no link to the hydrant (empty `HydrantGUID`). If Survey123 wins on accounts, a nightly FME or Python job that matches GIS ID to hydrant would close the gap.
-- **Public-view records can't be fixed from the app.** They have no SFPUC user in `created_user`. The Inspector pick list still records who did the inspection, and the GIS team can correct records in the source.
+- **Accounts.** Both apps need a sign-in, since the portal doesn't allow anonymous access.
+- **Two apps or one.** Survey123 crews open the hydrant in Field Maps and jump to the survey, so they use both apps. Field Maps crews stay in one.
+- **Fixing mistakes.** Field Maps crews can fix their own records afterwards; Survey123 crews can't once a record is sent.

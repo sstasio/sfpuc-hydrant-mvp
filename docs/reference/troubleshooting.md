@@ -16,7 +16,6 @@ Open each service's REST page with `?f=pjson` on the end, signed in as the owner
 
 - the source layer
 - `Hydrant Inspections Field` (the one the Field Maps map uses, so it matters most)
-- `Hydrant Inspections Public`, if you made it
 
 The URL is on each item page, bottom right (**URL**). It looks like `https://gis.sfpuc.org/server/rest/services/Hosted/<ServiceName>/FeatureServer?f=pjson`.
 

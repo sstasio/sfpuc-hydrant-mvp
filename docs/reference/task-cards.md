@@ -40,14 +40,6 @@ Print each set on its own pages, one card per half page. The **[Field Maps]** an
 - Take a photo. Remarks: pilot ID, then "Car blocking hydrant".
 - Then turn airplane mode off and send or sync the inspection.
 
-### Card A6. Survey123 only: no account
-
-- Hydrant **3803**, NW corner of Howard St and 5th St.
-- Pretend you have no SFPUC account. Open the survey from the link on this card (or the QR code) instead of the map, and **type the GIS ID yourself**.
-- Works fine. No corrosion. Gauge **55 psi**. Spindle stamped **50**. All caps on, shutoff OK, nothing in the way, markings readable.
-- Remarks: pilot ID only.
-- Survey link: ______________________ (pilot lead fills in)
-
 ## Set B
 
 ### Card B1. Routine check
@@ -83,11 +75,3 @@ Print each set on its own pages, one card per half page. The **[Field Maps]** an
 - Works fine. No corrosion. Gauge **58 psi**. Spindle stamped **55**. All caps on, shutoff OK, markings readable. **A car is parked in front of it** (obstructed).
 - Take a photo. Remarks: pilot ID, then "Car blocking hydrant".
 - Then turn airplane mode off and send or sync the inspection.
-
-### Card B6. Survey123 only: no account
-
-- Hydrant **3808**, NW corner of Howard St and 7th St.
-- Pretend you have no SFPUC account. Open the survey from the link on this card (or the QR code) instead of the map, and **type the GIS ID yourself**.
-- Works fine. No corrosion. Gauge **54 psi**. Spindle stamped **50**. All caps on, shutoff OK, nothing in the way, markings readable.
-- Remarks: pilot ID only.
-- Survey link: ______________________ (pilot lead fills in)

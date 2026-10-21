@@ -32,16 +32,15 @@ BOX = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
 WRAP = Alignment(wrap_text=True, vertical="top")
 
 TASK_NAMES = {"T1": "Routine check", "T2": "Low pressure, missing cap", "T3": "Several problems",
-              "T4": "Hydrant not there", "T5": "No signal (offline)", "T6": "No account (Survey123 only)"}
+              "T4": "Hydrant not there", "T5": "No signal (offline)"}
 
 TEAM_CRITERIA = [
-    ("Crews without accounts can inspect", "Any crew member can submit, no sign-in or account request needed", 20),
     ("Account and licensing cost", "No added licenses for 44 engine companies", 15),
-    ("Inspections tied to the right hydrant", "Every record lands under its hydrant without cleanup", 20),
-    ("Offline", "Works with no signal, map included, syncs without fuss", 15),
-    ("Upkeep", "Form and inspector list are quick to change and roll out", 10),
+    ("Inspections tied to the right hydrant", "Every record lands under its hydrant without cleanup", 25),
+    ("Offline", "Works with no signal, map included, syncs without fuss", 20),
+    ("Upkeep", "Form and inspector list are quick to change and roll out", 15),
     ("Dashboard and annual report", "Dashboard and FY report come straight from the data", 10),
-    ("Later Maximo link (FME Flow)", "Follow-up flags can become work requests with no rework", 5),
+    ("Later Maximo link (FME Flow)", "Follow-up flags can become work requests with no rework", 10),
     ("Security and sharing", "Fits SFPUC portal policy with no exceptions", 5),
 ]
 
@@ -148,9 +147,7 @@ def build(path, n_testers):
         blocks = [(1, first_app, first_set),
                   (2, S123 if first_app == FM else FM, "B" if first_set == "A" else "A")]
         for block, app, s in blocks:
-            for t in ["T1", "T2", "T3", "T4", "T5", "T6"]:
-                if t == "T6" and app != S123:
-                    continue
+            for t in ["T1", "T2", "T3", "T4", "T5"]:
                 ws.append([f"P{i}", block, app, s, t, TASK_NAMES[t], gisid[(t, s)]])
                 r += 1
     last = r - 1
@@ -238,18 +235,18 @@ def build(path, n_testers):
     rows = [
         ("Crew results (tasks 1 to 5)", None, None),
         ("Tasks logged",
-         f'=COUNTIFS({tapp},{{APP}},{ttask},"<>T6",{tres},"<>")', "Tasks with a Result filled in"),
+         f'=COUNTIFS({tapp},{{APP}},{tres},"<>")', "Tasks with a Result filled in"),
         ("Done alone",
-         f'=IFERROR(COUNTIFS({tapp},{{APP}},{ttask},"<>T6",{tres},"Alone")/[[Tasks logged]],"")', "Share of logged tasks"),
+         f'=IFERROR(COUNTIFS({tapp},{{APP}},{tres},"Alone")/[[Tasks logged]],"")', "Share of logged tasks"),
         ("Done with help",
-         f'=IFERROR(COUNTIFS({tapp},{{APP}},{ttask},"<>T6",{tres},"With help")/[[Tasks logged]],"")', ""),
+         f'=IFERROR(COUNTIFS({tapp},{{APP}},{tres},"With help")/[[Tasks logged]],"")', ""),
         ("Failed or skipped",
-         f'=IFERROR((COUNTIFS({tapp},{{APP}},{ttask},"<>T6",{tres},"Failed")'
-         f'+COUNTIFS({tapp},{{APP}},{ttask},"<>T6",{tres},"Skipped"))/[[Tasks logged]],"")', ""),
+         f'=IFERROR((COUNTIFS({tapp},{{APP}},{tres},"Failed")'
+         f'+COUNTIFS({tapp},{{APP}},{tres},"Skipped"))/[[Tasks logged]],"")', ""),
         ("Average minutes per task",
-         f'=IFERROR(AVERAGEIFS({tmin},{tapp},{{APP}},{ttask},"<>T6"),"")', ""),
+         f'=IFERROR(AVERAGEIFS({tmin},{tapp},{{APP}}),"")', ""),
         ("Average ease (1 to 7)",
-         f'=IFERROR(AVERAGEIFS({tease},{tapp},{{APP}},{ttask},"<>T6"),"")', "Asked after every task"),
+         f'=IFERROR(AVERAGEIFS({tease},{tapp},{{APP}}),"")', "Asked after every task"),
         ("Offline task synced",
          f'=IFERROR((COUNTIFS({tapp},{{APP}},{ttask},"T5",{tres},"Alone")'
          f'+COUNTIFS({tapp},{{APP}},{ttask},"T5",{tres},"With help"))'
@@ -258,18 +255,13 @@ def build(path, n_testers):
         ("Testers who would pick it", f'=COUNTIF({pick},{{APP}})', "From Wrap-up"),
         ("Data quality (tasks 1 to 5)", None, None),
         ("Records checked",
-         f'=COUNTIFS({dapp},{{APP}},{dtask},"<>T6",{dwrong},">=0")', "From Data check"),
+         f'=COUNTIFS({dapp},{{APP}},{dwrong},">=0")', "From Data check"),
         ("Tied to the right hydrant",
-         f'=IFERROR(COUNTIFS({dapp},{{APP}},{dtask},"<>T6",{dlink},"Yes")/[[Records checked]],"")', ""),
+         f'=IFERROR(COUNTIFS({dapp},{{APP}},{dlink},"Yes")/[[Records checked]],"")', ""),
         ("Records with no mistakes",
-         f'=IFERROR(COUNTIFS({dapp},{{APP}},{dtask},"<>T6",{dwrong},0)/[[Records checked]],"")', ""),
+         f'=IFERROR(COUNTIFS({dapp},{{APP}},{dwrong},0)/[[Records checked]],"")', ""),
         ("Average wrong fields per record",
-         f'=IFERROR(AVERAGEIFS({dwrong},{dapp},{{APP}},{dtask},"<>T6"),"")', ""),
-        ("No-account test (task 6, Survey123 only)", None, None),
-        ("Task 6 done alone", None,
-         f'=IFERROR(COUNTIFS({ttask},"T6",{tres},"Alone")/COUNTIFS({ttask},"T6",{tres},"<>"),"")'),
-        ("Task 6 records tied to a hydrant", None,
-         f'=IFERROR(COUNTIFS({dtask},"T6",{dlink},"Yes")/COUNTIFS({dtask},"T6",{dwrong},">=0"),"")'),
+         f'=IFERROR(AVERAGEIFS({dwrong},{dapp},{{APP}}),"")', ""),
         ("Must pass", None, None),
         ("80% or more done alone", '=IF([[Done alone]]="","",IF([[Done alone]]>=0.8,"PASS","FAIL"))', ""),
         ("95% or more tied to the right hydrant", '=IF([[Tied to the right hydrant]]="","",IF([[Tied to the right hydrant]]>=0.95,"PASS","FAIL"))', ""),
@@ -315,8 +307,7 @@ def build(path, n_testers):
             cell.alignment = Alignment(vertical="top", wrap_text=True)
 
     pct = ["Done alone", "Done with help", "Failed or skipped", "Offline task synced",
-           "Tied to the right hydrant", "Records with no mistakes", "Task 6 done alone",
-           "Task 6 records tied to a hydrant"]
+           "Tied to the right hydrant", "Records with no mistakes"]
     for label in pct:
         for c in (2, 3):
             ws.cell(row=lab[label], column=c).number_format = "0%"
@@ -331,7 +322,7 @@ def build(path, n_testers):
 
     g = lab["Gap between apps"]
     comb = lab["Combined score"]
-    ws.cell(row=g, column=1, value="Closer than 10%? (then account access decides, see PILOT-SCRIPT.md)")
+    ws.cell(row=g, column=1, value="Closer than 10%? (then tester preference decides, see the pilot page)")
     ws.cell(row=g, column=1).font = BASE
     ws.cell(row=g, column=2, value=f'=IFERROR(IF(ABS(B{comb}-C{comb})<0.1*MAX(B{comb},C{comb}),"Yes","No"),"")')
     ws.merge_cells(start_row=g, start_column=2, end_row=g, end_column=3)
@@ -343,11 +334,6 @@ def build(path, n_testers):
     gates = f"B{lab['80% or more done alone']}:C{lab['Offline synced for every tester']}"
     ws.conditional_formatting.add(gates, CellIsRule(operator="equal", formula=['"PASS"'], fill=PASS_FILL))
     ws.conditional_formatting.add(gates, CellIsRule(operator="equal", formula=['"FAIL"'], fill=FAIL_FILL))
-    ws.cell(row=g + 2, column=1, value="Task 6 is reported on its own: the no-account path only exists in "
-            "Survey123, and those records are expected to arrive without a hydrant link.").font = BASE
-    ws.cell(row=g + 2, column=1).alignment = Alignment(wrap_text=True)
-    ws.merge_cells(start_row=g + 2, start_column=1, end_row=g + 2, end_column=4)
-    ws.row_dimensions[g + 2].height = 30
 
     # Observer sheet (printable)
     ws = wb.create_sheet("Observer sheet")
@@ -356,7 +342,7 @@ def build(path, n_testers):
     header(ws, 3, ["Task", "Start", "Stop", "Minutes", "Alone / Help / Failed", "Ease 1-7", "Photo",
                    "Where they got stuck, what they said"], [8, 9, 9, 9, 14, 9, 8, 70])
     ws.freeze_panes = None
-    for t in ["T1", "T2", "T3", "T4", "T5", "T6 (S123)"]:
+    for t in ["T1", "T2", "T3", "T4", "T5"]:
         ws.append([t])
         ws.row_dimensions[ws.max_row].height = 60
     style_rows(ws, 4, ws.max_row, 8, input_cols=range(2, 9))

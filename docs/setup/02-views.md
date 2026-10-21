@@ -1,6 +1,6 @@
 # 2. Lock down the source and create views
 
-**Who:** GIS analyst (portal admin for the public view) · **You need:** the layer from step 1 · **Done when:** crews can only reach the data through views
+**Who:** GIS analyst · **You need:** the layer from step 1 · **Done when:** crews can only reach the data through views
 
 Crews never touch the published layer directly. They edit through **views**: saved windows onto the same data, each with its own sharing and editing rules. Every view writes straight into the source, so there is nothing to sync or copy.
 
@@ -9,22 +9,21 @@ Crews never touch the published layer directly. They edit through **views**: sav
 | Item | Who sees it | Editing | Used by |
 |---|---|---|---|
 | **Source**: the hosted layer you published (Hydrants + HydrantInspections) | Owner and GIS team only | Full (owner) | GIS team, pilot data check, dashboard later |
-| **Field view**: `Hydrant Inspections Field` | MVP test group | Add and update; crews can only edit records they created | Field Maps web map |
-| **Public view**: `Hydrant Inspections Public` (optional) | Everyone | Add only, can't see any records | Survey123 form |
+| **Field view**: `Hydrant Inspections Field` | MVP test group | Add and update; crews can only edit records they created | Field Maps web map and the Survey123 form |
 
 What this gets you:
 
 - **Hydrants stay yours.** Crews can see hydrants but not move, change or delete them.
 - **Inspections are add-only for crews**, plus fixing their own records in Field Maps.
-- **The public can submit but can't browse.** Nobody without a sign-in can read inspections, inspector names or remarks.
+- **Everyone signs in.** The portal doesn't allow anonymous access, so there is no public view. Both apps write through the field view.
 - **The pilot and dashboard keep working.** They read the source, which holds every record from both apps.
 
 ## Fields in each view
 
-Keep **all fields** in both views. Don't hide any in **Update View**.
+Keep **all fields** in the field view. Don't hide any in **Update View**.
 
-- **Field view:** the Field Maps form and its Arcade read hydrant fields and fill several inspection fields automatically, so every field must be there. Hydrants are read-only through the ownership rule, not by hiding fields.
-- **Public view:** the survey writes nearly every inspection field. A missing field makes submissions fail or lose that value. Privacy comes from "Editors can't see any features", not from hiding fields.
+- The Field Maps form and its Arcade read hydrant fields and fill several inspection fields automatically, so every field must be there. Hydrants are read-only through the ownership rule, not by hiding fields.
+- The survey writes nearly every inspection field. A missing field makes submissions fail or lose that value.
 - ObjectID, GlobalID and the editor tracking fields can't be removed from a view anyway.
 
 ## 2a. Lock down the source
@@ -55,32 +54,6 @@ On the source item's page:
 6. **Test with a crew test account** before the pilot ([step 7](07-test.md)). These settings apply to the whole view, not per layer, so the "own features only" rule is what protects hydrants. If `created_user` on your hydrants is blank, that protection may not hold.
 
 > **Check in 11.5:** whether 11.5 allows different editing rules per layer in one view through the item page. If it does, set Hydrants to no editing outright and skip relying on ownership.
-
-## 2c. Create the public view (optional)
-
-Only if the portal admin allows public sharing (see [pilot prep](08-pilot.md#before-the-pilot-pilot-lead-and-portal-admin)). Skip it otherwise and point Survey123 at the field view in [step 6](06-survey123.md).
-
-1. From the source item, **Create View Layer** again. Name it `Hydrant Inspections Public`.
-2. Include **only HydrantInspections**. Leave Hydrants out so hydrant locations aren't published to everyone. The form gets the hydrant's GlobalID, GIS ID and location from the pop-up link instead.
-
-    > **Check in 11.5:** that the table keeps its layer ID (1) in the view, since the form looks it up by name (`form_id` = `HydrantInspections`).
-
-3. **Settings**:
-    - **Enable editing**: on, **Add** only. If Add is greyed out (only Update offered), it's almost always one of two things:
-        1. Add is off on the **source**. A view can't allow more than its source, so open the source item's **Settings**, tick **Add** under editing, save, then come back to the view.
-        2. You're in the **Update View** dialog, which only changes layers and fields. Editing lives in the view's **Settings > Feature Layer (hosted, view) > Editing**.
-    - **What features can editors see**: **Editors can't see any features**. The 11.5 wording may add "even those they add".
-    - **Public data collection**: **on**, for this view only. It's what lets people without a sign-in submit the survey. Keep it **off** on the source and the field view.
-    - **Enable Sync**: off. **Allow others to export**: off.
-4. **Share** with **Everyone**. The source and field view stay private.
-
-Because anyone can write to this view, check it once it's set up:
-
-- [ ] Editing is **Add** only: no update, no delete.
-- [ ] **Editors can't see any features** is selected.
-- [ ] **Allow others to export** is off.
-- [ ] **Public data collection** is on here, and off on the source and field view.
-- [ ] Only this view is shared with **Everyone**. The source and field view are not.
 
 ## Next
 
