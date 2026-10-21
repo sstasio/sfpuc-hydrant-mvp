@@ -9,7 +9,7 @@
 ## Field Maps, with a crew test account, on a phone
 
 - [ ] The map opens and shows hydrants and their past inspections.
-- [ ] You can add an inspection from a hydrant, and its GIS ID and location fill in.
+- [ ] You can add an inspection from a hydrant, and the form's Hydrant group fills in GIS ID, Location, Latitude and Longitude (needs the form from [step 5](05-field-maps-form.md)). The inspection pop-up doesn't show these; they're on the hydrant.
 - [ ] You can't edit or move a hydrant, and there's no option to add one.
 - [ ] You can fix an inspection you just added, but not one someone else added.
 - [ ] Take the map offline, add an inspection, sync. It shows up in the source.
