@@ -22,32 +22,16 @@ The builder has three parts:
 - **Middle:** the form as crews will see it, top to bottom.
 - **Right:** the settings for whatever you select in the middle.
 
-### Add the groups
+### Add the fields first
 
-A group is a heading that holds fields and can collapse.
+Field Maps won't let you add groups to an empty form, so put the fields on the form first and group them after.
 
-1. Drag **Group** from the left into the middle.
-2. With the group selected, set its **Label** on the right, and set **Initial state** to **Expanded**.
-3. Repeat until you have the seven groups below, in this order. Drag them up or down to reorder.
-
-| Group label | Shows | Initial state |
-|---|---|---|
-| Hydrant | Always | Expanded |
-| Crew | Always | Expanded |
-| Found at location | Always | Expanded |
-| Condition | Only when found = Yes ([5c](#5c-conditional-visibility)) | Expanded |
-| Markings missing | Only when found = Yes | Expanded |
-| Other issues | Only when found = Yes | Expanded |
-| Follow-up | Always | Expanded |
-
-### Add the fields
-
-Drag each field from the field list into its group, then select it and set it up on the right:
-
-- **Display name:** the label crews see (the Label column below).
-- **Input type:** what crews tap. For a switch, set the **On** value to `Yes` and **Off** to `No`.
-- **Required:** on for the fields marked Yes.
-- **Editable:** leave on, except where the table says Calculated. Calculated fields turn read-only by themselves.
+1. Drag each field in the table below from the field list into the middle, top to bottom in the order shown.
+2. Select each field and set it up on the right:
+    - **Display name:** the label crews see (the Label column).
+    - **Input type:** what crews tap. For a switch, set the **On** value to `Yes` and **Off** to `No`.
+    - **Required:** on for the fields marked Yes.
+    - **Editable:** leave on, except where the table says Calculated. Calculated fields turn read-only by themselves.
 
 | Group | Field | Label | Input type | Required | Notes |
 |---|---|---|---|---|---|
@@ -79,6 +63,25 @@ Drag each field from the field list into its group, then select it and set it up
 | Other issues | `hardtooperate` | Hard to operate | Switch | | |
 | Follow-up | `needsfollowup` | Needs SFPUC follow-up | Switch | | Calculated |
 | Follow-up | `remarks` | Remarks | Multiline text | | |
+
+### Then group them
+
+A group is a heading that holds fields and can collapse. With the fields on the form:
+
+1. Drag **Group** from the left into the middle, just above the first field it should hold.
+2. With the group selected, set its **Label** on the right, and set **Initial state** to **Expanded**.
+3. Drag that group's fields (the Group column in the table above) into it.
+4. Repeat until you have the seven groups below, in this order. Drag a group up or down to reorder it, and its fields move with it.
+
+| Group label | Shows | Initial state |
+|---|---|---|
+| Hydrant | Always | Expanded |
+| Crew | Always | Expanded |
+| Found at location | Always | Expanded |
+| Condition | Only when found = Yes ([5c](#5c-conditional-visibility)) | Expanded |
+| Markings missing | Only when found = Yes | Expanded |
+| Other issues | Only when found = Yes | Expanded |
+| Follow-up | Always | Expanded |
 
 Leave these out of the form: `hydrantguid` (Field Maps fills it when the inspection is added from a hydrant), ObjectID, GlobalID and the editor tracking fields. Photos come from the attachments section Field Maps adds on its own.
 
